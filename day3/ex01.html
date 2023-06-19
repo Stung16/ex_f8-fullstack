@@ -9,17 +9,50 @@
         *{
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
-        table,th,td{
-            padding: 5px 3px;
+        .contact_us{
+            display: flex;
+            width: 900px;
+            height: 300px;
+            justify-content: space-between;
         }
-        table{
-            border-spacing: 5px;
+        .contact_list{
+            display: flex;
+            width: 230px;
+            margin-bottom: 20px;
         }
-        thead>tr{
-            text-align: left;
+        .contact_list i{
+            margin-right: 15px;
+            
+        }
+        div h2{
+            margin-bottom: 30px;
         }
 
+        .contact_query .form{
+            display: flex;
+            flex-direction: column;
+            width: 600px;
+            
+        }
+        .contact_query .form_input{
+            margin-bottom:10px;
+            line-height: 20px;
+        }
+        /* .form_btn{
+            line-height: 20px;
+            width: 100px;
+        } */
+        .form_btn {
+            padding: 12px 30px;
+            background-color: #08768d;
+            border: none;
+            color: #fff;
+            line-height: 20px;
+            width: 200px;
+
+        }
     </style>
 </head>
 <body>
@@ -29,58 +62,33 @@
     <main>
         <section>
             <h1>CONTACT US</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th colspan="2">Contact Infor</th>
-                        <!-- <th></th> -->
-                        <th>Having Any Query! Or Book an appointment</th>
-                    </tr>                
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <i class="fa-solid fa-location-dot"></i>
-                        </td>
-                        <td>
-                            <span>327 awesome Street New York,NY 17022</span>
-                        </td>
-                        <td>
-                            <input type="text" placeholder="Your name" size="53px">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <i class="fa-regular fa-envelope"></i>
-                        </td>
-                        <td>
-                            <span>infor@gmail.com</span>
-                        </td>
-                        <td>
-                            <input type="email" placeholder="Your email" size="53px">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <i class="fa-solid fa-phone"></i>
-                        </td>
-                        <td>
-                            <span>+1 123 456 7890</span>
-                        </td>
-                        <td>
-                            <input type="text" placeholder="Subject" size="53px">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <textarea name="" id="" cols="50" rows="10" placeholder="Message"></textarea>
-                        </td>
-                    </tr>
-                </tbody>
-    
-            </table>
+            <div class="contact_us">
+                <div class="contact_infor">
+                    <h2>Contact info</h2>
+                    <div class="contact_list">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>321 Awesome Street New York, NY 17022</p>
+                    </div>
+                    <div class="contact_list">
+                        <i class="fa-regular fa-envelope"></i>
+                        <p>info@companyname.com</p>
+                    </div>
+                    <div class="contact_list">
+                        <i class="fa-solid fa-phone"></i>
+                        <p>+1 800 123 1234</p>
+                    </div>    
+                </div>
+                <div class="contact_query">
+                    <form class="form"  method="post">
+                        <h2>Having any Query! Or book an appointment</h2>
+                        <input class="form_input" type="text" name="username" placeholder="Your name" required>
+                        <input class="form_input" type="email" name="useremail" placeholder="Your email" required>
+                        <input class="form_input" type="text" name="subject" placeholder="Subject" required>
+                        <textarea class="form_input" name="message" rows="6" placeholder="Message" required></textarea>
+                        <button class="form_btn" type="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>            
         </section>
     </main>
     <footer>
