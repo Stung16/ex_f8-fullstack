@@ -4,28 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>homeworkDay4</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&display=swap">
     <style>
+
+        form{
+            width: 410px;
+            margin: 0 auto;
+            text-align: center;
+        }
 
         form input::placeholder{
             padding: 10px 15px;
             
         }
+        form h1{
+            font-family:'Alfa Slab One', cursive ;
+        }
+        form h3{
+            font-family:'Bebas Neue', sans-serif ;
+        }
         form input{
-            line-height: 25px;
+            line-height: 30px;
+            font-family: 'Bebas Neue', sans-serif;
+            width: 195px;
+            border: 1px solid #888;
+            font-size: 15px;
         }
         form table tr{
             line-height: 5z0px;
         }
         [class="btn_find"]{
             border: none;
-            width: 170px;
+            width: 200px;
             border-radius: 3px;
             background:rgb(221, 25, 25);
         }
 
-        .placeholder:not(type="text"):focus{
-            display: none;
+        .table_booking .btn_find{
+            line-height: 30px;
+            font-family: 'Alfa Slab One', cursive;
+            color: #fff;
+
         }
+
+
 
         
         
@@ -46,8 +68,8 @@
                         <td><input type="email" placeholder="EMAIL"></td>
                     </tr>
                     <tr>
-                        <td><input type="date" placeholder="DATE" class="placeholder"></td>
-                        <td><input type="time" placeholder="TIME" class="placeholder"></td>
+                        <td><input type="text" placeholder="DATE"></td>
+                        <td><input type="text" placeholder="TIME"></td>
                     </tr>
                     <tr>
                         <td><input type="text" placeholder="PEOPLE"></td>
