@@ -1,0 +1,167 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* .nav_list{
+    display: flex;
+    justify-content: space-between;
+} */
+.products{
+    display: none;
+}
+[class='btn']{
+    padding: 10px 20px;
+    background-color: #ddd;
+    color: #666;
+    cursor: pointer;
+}
+input[type="radio"]:checked ~ .btn{
+    background-color: blue;
+    color: white;
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+section.nav{
+    width: 1000px;
+    text-align: center;
+    margin: 20px auto;
+}
+section.nav h1{
+margin-bottom: 30px;
+font-size: 40px;
+}
+section.tag1{
+    width: 1000px;
+    margin: 100px auto;
+
+}
+
+
+.product{
+    display: flex;
+    justify-content: space-between;
+}
+.skincare{
+    width: 200px;
+}
+.img{
+    width: 200px;
+    height: 300px;
+}
+.img img{
+    width: 200px;
+}
+.img_product{
+    position: relative;
+}
+.icon{
+    position: absolute;
+    color: #fff;
+    background: #28378e;
+}
+.icon a{
+    color: #fff;
+}
+
+.icon_heart{
+    bottom: 100px;
+    left: 0;
+    padding: 10px 15px;
+}
+.icon_change{
+    bottom: 100px;
+    left: 63px;
+    padding: 10px 30px;
+
+}
+.icon_eye{
+    bottom: 100px;
+    right: 0;
+    padding: 10px 15px;
+
+}
+.icon_add{
+    bottom: 25px;
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+}
+.list_item{
+    display: none;
+}
+.skincare_text, .skincare_price{
+    text-align: center;
+    margin-top: 10px;
+}
+.list_star{
+    display: block;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.skincare:hover .img_product .list_item{
+    display: block;
+}
+.img1{
+    background-image: url(../../img/product_img3.jpg);
+    background-size: cover;
+}
+.skincare:hover .img1{
+    background-image: url(../../img/product_img2.jpg);
+    background-size: cover;
+    transition:  0.5s linear;
+}
+
+.img2{
+    background-image: url(../../img/son-tung-jordan-1.jpg);
+    background-size: cover;
+}
+.skincare:hover .img2{
+    background-image: url(../../img/shopping2.jpg);
+    background-size: cover;
+    transition:  0.5s linear;
+
+}
+
+.img3{
+    background-image: url(../../img/shoe1-10.jpg);
+    background-size: cover;
+}
+.skincare:hover .img3{
+    background-image: url(../../img/shoe1-9.jpg);
+    background-size: cover;
+    transition:  0.5s linear;
+
+}
+
+.img4{
+    background-image: url(../../img/shoe1-7.jpg);
+    background-size: cover;
+}
+.skincare:hover .img4{
+    background-image: url(../../img/shoe1-12.jpg);
+    background-size: cover;
+    transition:  0.5s linear;
+
+}
