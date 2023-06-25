@@ -1,0 +1,62 @@
+.list_content{
+    list-style: none;
+    width: 100%;
+    padding: 0;
+}
+.content{
+    background-color: #d85825;
+    margin: 10px 0;
+    position: relative;
+
+}
+
+.item_content{
+    width: 100%;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 25px;
+    display: block;
+    /* position: relative; */
+
+}
+.paragraph{
+    display: none;
+    background-color: #eee;
+    padding-left: 10px;
+
+}
+input[type="checkbox"]{
+    display: none;
+}
+input[type="checkbox"]:checked~ .paragraph{
+    display: block;
+}
+.checkmark{
+    display: block;
+    height: 2px;
+    width: 10px;
+    position: absolute;
+    background-color:#fff;
+    left: 8px;
+    top: 20px;
+}
+.checkmark::after{
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 10px;
+    background-color: #fff;
+    top: -4px;
+    left: 4px;
+
+}
+.content input:checked~ .checkmark::after{
+    display: none;
+}
+
+
+
+
+
+
+

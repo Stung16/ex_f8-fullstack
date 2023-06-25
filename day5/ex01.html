@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>homeworkDay4</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/ex01.css">
+</head>
+<body>
+    <header>
+        <!-- header content -->
+    </header>
+    <main>
+        <section>
+            <form action="post">
+                <h1>Hey there</h1>
+                <p class="paragrap">
+                    <span>We'd like to hear from you.</span> Send us your message or
+                    just say hy with our contact form or directly via phone, we love
+                    to chat 
+                </p>
+                <ul class="form_content">
+                    <li class="input_form yourname">
+                        <label for="name">
+                            <i class="icon fa-regular fa-user"></i>
+                        </label>
+                        <div class="input">
+                            <input class="content" type="text" id="name" name="name" placeholder="Your name" required>
+                            <i class="icon_star fa-solid fa-star" style="color: #c3c6d1;"></i>
+                            <div class="field">Enter your name</div>
+
+                        </div>
+                    </li>
+                    <li class="input_form email">
+                        <label for="email">
+                            <i class="icon fa-regular fa-envelope"></i>
+                        </label>
+                        <div class="input">
+                            <input class="content" type="email" id="email" name="email " placeholder="your@domain.com" required>
+                            <i class="icon_star fa-solid fa-star" style="color: #c3c6d1;"></i>
+                            <div class="field">Enter your email</div>
+                        </div>
+                    </li>
+                    <li class="input_form phonenumber">
+                        <label for="number">
+                            <i class="icon fa-solid fa-mobile-screen-button"></i>
+                        </label>
+                        <div class="input">
+                            <input class="content" type="number" id="number" name="email " placeholder="+44 00 123" required>
+                            <div class="field">Enter your number</div>
+                        </div>
+                    </li>
+                    <li class="input_form subject">
+                        <label for="subject">
+                            <i class="icon fa-regular fa-window-restore"></i>
+                        </label>
+                        <div class="input">  
+                            <!-- <input type="text" class="content"> -->
+                            <select name="subject" id="subject" required>
+                                <option value="0" hidden>Subject</option>
+                                <option value="1" >abc</option>
+                                <option value="2" >xyz</option>
+                            </select> 
+                        </div>
+                    </li>
+                    <li class="input_form message">
+                        <label for="textarea">
+                            <i class="icon fa-regular fa-message"></i>
+                        </label>
+                        <div class="input">
+                            
+                            <span><textarea name="textarea" id="textarea" cols="60" rows="10" required></textarea></span>
+                            <i class="icon_star fa-solid fa-star" style="color: #c3c6d1;"></i>
+
+                        </div>
+                        <div class="field">Enter your name</div>
+                    </li>
+                </ul>
+                <div class="post">                    
+                    <label class="container">Send me a copy of this message
+                        <input hidden type="checkbox" checked="checked">
+                        <span class="checkmark"></span>
+                    </label>              
+                    <!-- <span><input type="checkbox" id="checkbox"><label for="checkbox">Send me a copy of this message</label></span> -->
+                    <button>SEND</button>
+                </div>
+            </form>
+        </section>
+
+        
+    </main>
+    <footer>
+        <!-- content footer -->
+    </footer>
+    
+</body>
+</html>
