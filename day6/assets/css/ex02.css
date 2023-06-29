@@ -1,0 +1,107 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+body{
+    background-color: #ebf5fe;
+
+}
+.layout{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 50px 250px;
+}
+.items{
+    width: 300px;
+    margin: 15px;
+
+    border-radius: 10px;
+    padding: 25px 20px;
+    line-height: 25px;
+    background-color: #fff;
+
+}
+.header{
+    display: flex;
+}
+
+.header h2{
+    width: 140px;
+    margin-left: 15px;
+}
+
+
+.content{
+    margin-top: 15px;
+    color: #666;
+
+}
+.item_link{
+    text-decoration: none;
+    color: #326aeb;
+    font-weight: 800 ;
+    font-size: 15px;
+    margin-top: 25px;
+    display: block;
+}
+/* .header .icon{
+    color: #fff;
+    background-color: pink;
+    padding: 10px;
+    border-radius: 99px;
+    font-size: 25px;
+
+} */
+.item_1 .icon{
+    text-align: center;
+    padding: 15px 18px;
+    color: #fff;
+    background-image: linear-gradient(to right, #e4597d, #e47d61);
+    border-radius: 99px;
+    font-size: 25px;
+}
+.item_2 .icon{
+    text-align: center;
+    padding:  15px;
+    color: #fff;
+    background-image: linear-gradient(to right, #50a4a5, #81dba3);
+    border-radius: 99px;
+    font-size: 25px;
+}
+.item_3 .icon{
+    text-align: center;
+    padding: 15px 17px;
+    color: #fff;
+    background-image: linear-gradient(to right, #e18631, #f7d98a);
+    border-radius: 99px;
+    font-size: 25px;
+}.item_4 .icon{
+    text-align: center;
+    padding:  15px;
+    color: #fff;
+    background-image: linear-gradient(to right, #326ccc, #7393f6);
+    border-radius: 99px;
+    font-size: 25px;
+}.item_5 .icon{
+    text-align: center;
+    padding: 15px;
+    color: #fff;
+    background-image: linear-gradient(to right, #7932ce, #c16ced);
+    border-radius: 99px;
+    font-size: 25px;
+}.item_6 .icon{
+    text-align: center;
+    padding: 15px;
+    color: #fff;
+    background-image: linear-gradient(to right, #68882b, #a8d078);
+    border-radius: 99px;
+    font-size: 25px;
+}
+.items:hover {
+    outline: 2px solid #e84b3f;
+}
