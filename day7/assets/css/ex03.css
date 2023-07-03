@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Asap:wght@300&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Asap', sans-serif;
+}
+.info_local{
+    margin: 15px auto;
+    max-width: 1350px;
+}
+.header_text{
+    display: flex;
+}
+.line{
+    width: 50px;
+    flex: 1;
+    height: 2px;
+    background-color: #ddd;
+    margin: 20px 50px 0 20px;
+}
+.header_text h2{
+    font-size: 20px;
+    padding: 10px 0 0 0;
+}
+.list_local{
+    margin: 20px 0;
+}
+.list_local ul{
+    list-style: none;
+    display: inline-flex;
+    text-align: center;
+}
+.address{
+    /* border: 1px solid #333; */
+    border-radius: 99px;
+    padding: 5px 15px;
+    font-size: 15px;
+    font-weight: bolder;
+    margin-right: 15px;
+    background-color: #e5e5e5;
+}
+.address span{
+    display: block;
+    font-size: 13px;
+    font-weight: 300;
+    font-style: italic;
+    font-weight: bold;
+    color: #5a5a60;
+    margin: 5px 0;
+}
+.item_local{
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+    margin-top: 20px;
+}
+.item_local-01{
+    overflow: hidden;
+    border-radius: 5px;
+    margin-bottom:20px;
+    margin-right: 20px;
+}
+.item_local-01 .img{
+    background-image: url(https://picsum.photos/420/300);
+    background-repeat: no-repeat;
+    height: 300px;
+    width: 420px;
+    /* overflow: hidden; */
+    position: relative;
+}
+.img .item_name{
+    position: absolute;
+    font-size: 25px;
+    color: #fff;
+    font-weight: bolder;
+    top:30px;
+    left: 15px;
+}
+.img .item_info{
+    font-size: 16px;
+    color: #fff;
+    position: absolute;
+    bottom:30px;
+    left: 15px;
+}
+.img .item_info span{
+    font-size: 22px;
+    font-weight: bolder;
+}
+.list_local .address:hover{
+    background-color: #ae7c37;
+    color: #fff;
+}
+.address:hover .info_hover{
+    color: #fff;
+}

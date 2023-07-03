@@ -96,6 +96,7 @@ nav{
     border-color: transparent transparent #fff transparent;
     top: -12px;
     left: 10px;
+    z-index: 2;
     
 }
 .item_link i{

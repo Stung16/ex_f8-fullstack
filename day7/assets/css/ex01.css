@@ -1,0 +1,66 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Asap:wght@300&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;    
+}
+.banner{
+    background-image: url(https://cdn.houseviet.vn/images/project/23042023/ha-noi-melody-residences-cover.jpg);
+    background-repeat: no-repeat;
+    background-size:100vw;
+    height: 700px;
+    position: relative;
+}
+.information{
+    position: absolute;
+    max-width: 550px;
+    background-color: #ffffffc9;
+    /* margin: 300px; */
+    /* display: block; */
+    left: 200px;
+    border-radius: 3px;
+    top: 130px;
+    font-family: 'Asap', sans-serif;
+
+}
+.info{
+    margin: 35px 20px 50px 25px;
+}
+.info_header{
+    color: #bf4240;
+    margin-bottom: 15px;
+    font-size: 30px;
+    font-weight: bolder;
+}
+.info_text{
+    line-height: 20px;
+    color: #3f3424;
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 12px;
+    
+    
+}
+.info_address{
+    color: #3f3424;
+    font-weight: 600;
+}
+.cost_info{
+    position: absolute;
+    background-color: #bf4240;
+    color: #fff;
+    min-width: 150px;
+    text-align: center;
+    border-radius: 3px;
+    padding: 10px 25px;
+    display: block;
+    font-weight: 700;
+    font-size: 20px;
+    right: 30px;
+    bottom: -25px;
+    font-family: 'Oswald', sans-serif;
+}
