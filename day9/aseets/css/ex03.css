@@ -1,0 +1,63 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+section{
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center ;
+    
+}
+.form{
+    border: 1px solid #333;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+
+}
+.form span{
+    position:absolute;
+    left:20px ;
+    font-size: 15px;
+    color: #999;
+    bottom: 10px;
+}
+.form input{
+    outline: none;
+    border: none;
+    padding-left: 20px;
+    /* height: 100%; */
+    height: 40px;
+    font-size: 18px;
+    color: #333;
+}
+
+.f_name{
+    flex: 45%;
+    max-width: 45%;
+}
+.l_name{
+    flex: 45%;
+    max-width: 45%;
+
+}
+.email{
+    flex: 45%;
+    max-width: 45%;
+
+}
+.selection{
+    flex: 45%;
+    max-width: 45%;
+
+}
+.textarea{
+    flex: 100%;
+    max-width: 100%;
+
+}
