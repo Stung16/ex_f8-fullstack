@@ -7,34 +7,38 @@
     <link rel="stylesheet" href="./aseets/css/ex03.css">
 </head>
 <body>
-    <section id="form">
-        <label class="form f_name" for="F_name">
-            <input type="text" id="F_name">
-            <span>First Name*</span>
-        </label>
-        <label class="form l_name " for="L_name" >
-            <input type="text"id="L_name">
-            <span>Last Name*</span>
-        </label>
-        <label class="form email" for="mail">
-            <input type="email" id="mail">
-            <span>Email*</span>
-        </label>
-        <label class="form selection " for="department">
-            <select class="choose">
-                <option hidden value="0">Select a department</option>
-                <option value="1">Sales</option>
-                <option value="2">Marketing</option>
-                <option value="3">Customer Support</option>
-            </select>
-        </label>
-        <label class="form textarea " for="textara">
-            <textarea name="" id="textara" cols="30" rows="10"></textarea>
-            <span>Message</span>
-        </label>
-
-
-    </section>
+    <main>
+        <h1>Drop Us a Line</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio modi atque aspernatur.</p>
+        <div class="form">
+            <div class="form_field f-name">
+                <input id="f-name" type="text" class="form_input" required placeholder=" ">
+                <label for="f-name" class="form_label">First Name*</label>
+            </div>
+            <div class="form_field l-name">
+                <input id="l-name" type="text" class="form_input " placeholder=" ">
+                <label for="l-name" class="form_label">Last Name*</label>
+            </div>
+            <div class="form_field email">
+                <input id="email" type="email" class="form_input " placeholder=" ">
+                <label for="email" class="form_label">Email*</label>
+            </div>
+            <div class="form_selection section">
+                <select class="department">
+                    <option value="0" hidden>Select a department</option>
+                    <option value="1">Sales</option>
+                    <option value="2">Marketing</option>
+                    <option value="3">Custumer Support</option>
+                </select>
+            </div>
+            <div class="input_textara">
+                <textarea class="textarea" cols="30" id="textarea" rows="10" placeholder=" "></textarea>
+                <label class="form_label-text" for="textarea">Message</label>
+            </div>
+            <button>Send Message</button>
+        </div>
+    </main>
+    
     
 </body>
 </html>
