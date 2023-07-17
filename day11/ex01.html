@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeWorkDay11</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./aseet/css/ex01.css">
+    <link rel="stylesheet" href="./aseet/css/grid.css">
+</head>
+<body>
+    <main>
+        <section id="header">
+            <div class="header__menu">
+                <div class="header__logo">
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="155" height="42" viewBox="0 0 155 42" fill="none">
+                            <path d="M64.7649 25.8618C63.4896 26.4894 62.2143 26.7177 60.8456 26.7177C56.6776 26.7177 53.7848 24.0646 53.7848 20.3276C53.7848 16.5335 56.6776 13.9375 60.9078 13.9375C63.1163 13.9375 64.9515 14.6507 66.5378 16.1911L69.7728 13.4525C67.6576 11.1989 64.4849 10.0007 60.659 10.0007C53.7226 10.0007 48.6836 14.3083 48.6836 20.3276C48.6836 26.3468 53.7226 30.6544 60.5657 30.6544C63.6762 30.6544 66.9733 29.7701 69.3684 28.1155V20.0138H64.7649V25.8618Z" fill="#2E2E2E"/>
+                            <path d="M78.3417 16.9899V14.9645H73.7071V30.3121H78.5594V23.0662C78.5594 20.1279 80.3324 18.7871 83.0074 18.7871C83.3807 18.7871 83.6918 18.8156 84.0961 18.8442V14.7362C81.5144 14.7362 79.5237 15.5065 78.3417 16.9899Z" fill="#2E2E2E"/>
+                            <path d="M94.7923 30.5403C100.111 30.5403 103.968 27.2597 103.968 22.6383C103.968 18.0169 100.111 14.7362 94.7923 14.7362C89.4734 14.7362 85.5853 18.0169 85.5853 22.6383C85.5853 27.2597 89.4734 30.5403 94.7923 30.5403ZM94.7923 26.8888C92.3662 26.8888 90.4999 25.2913 90.4999 22.6383C90.4999 19.9852 92.3662 18.3877 94.7923 18.3877C97.2185 18.3877 99.0537 19.9852 99.0537 22.6383C99.0537 25.2913 97.2185 26.8888 94.7923 26.8888Z" fill="#2E2E2E"/>
+                            <path d="M118.7 14.9645L113.91 25.4054L109.276 14.9645H104.268L111.297 30.3121H116.305L123.366 14.9645H118.7Z" fill="#2E2E2E"/>
+                            <path d="M141.283 22.6953C141.283 17.7601 137.488 14.7362 132.573 14.7362C127.472 14.7362 123.646 18.0454 123.646 22.6383C123.646 27.2026 127.41 30.5403 133.196 30.5403C136.213 30.5403 138.546 29.6845 140.101 28.0584L137.519 25.491C136.368 26.4894 135.093 26.9744 133.32 26.9744C130.769 26.9744 128.996 25.8048 128.53 23.8935H141.19C141.221 23.5226 141.283 23.0376 141.283 22.6953ZM132.605 18.1024C134.782 18.1024 136.368 19.3576 136.71 21.2975H128.468C128.81 19.3291 130.396 18.1024 132.605 18.1024Z" fill="#2E2E2E"/>
+                            <path d="M149.148 16.9899V14.9645H144.513V30.3121H149.366V23.0662C149.366 20.1279 151.139 18.7871 153.814 18.7871C154.187 18.7871 154.498 18.8156 154.902 18.8442V14.7362C152.321 14.7362 150.33 15.5065 149.148 16.9899Z" fill="#2E2E2E"/>
+                            <path d="M41.5775 20.7893C41.5775 32.2706 32.2701 41.578 20.7888 41.578C9.30745 41.578 0 32.2706 0 20.7893C0 9.30794 9.30745 0.000488281 20.7888 0.000488281C32.2701 0.000488281 41.5775 9.30794 41.5775 20.7893Z" fill="url(#paint0_linear)"/>
+                            <path d="M20.8302 32.2973C20.8302 33.3228 20.0731 34.154 19.1392 34.154C18.2052 34.154 17.4481 33.3228 17.4481 32.2973C17.4481 31.2719 18.2052 30.4407 19.1392 30.4407C20.0731 30.4407 20.8302 31.2719 20.8302 32.2973Z" fill="white"/>
+                            <path d="M28.2707 32.2973C28.2707 33.3228 27.5135 34.154 26.5796 34.154C25.6457 34.154 24.8885 33.3228 24.8885 32.2973C24.8885 31.2719 25.6457 30.4407 26.5796 30.4407C27.5135 30.4407 28.2707 31.2719 28.2707 32.2973Z" fill="white"/>
+                            <path d="M23.6473 20.619L24.6586 20.6193V23.1661C24.6586 24.2228 24.0281 25.0789 23.1606 25.1964C22.7465 25.2552 22.2381 25.2846 21.6359 25.2846C16.693 25.2846 15.0576 18.6734 17.1777 14.3926L11.4275 10.7474C10.8614 10.3888 10.1374 10.6016 9.81058 11.2232C9.4836 11.8447 9.67764 12.6396 10.2437 12.9986L12.4581 14.4024C10.3889 21.8182 14.1325 28.9816 21.3535 28.9816C22.8029 28.9816 24.0924 28.8742 25.2218 28.6588C25.5137 28.6041 25.7824 28.5446 26.0382 28.4797C26.3239 28.4072 26.5936 28.3285 26.8613 28.2433C27.6668 27.9876 28.2131 27.0857 28.2131 26.0776V17.6777C28.2131 17.2603 27.9336 16.9219 27.5887 16.9219H20.5345C20.5345 16.9219 20.7134 17.4931 21.0491 18.1864C21.5677 19.2573 22.4604 20.619 23.6473 20.619Z" fill="white"/>
+                            <path d="M14.5034 10.5817C17.1292 7.67122 21.1381 7.37785 24.8213 7.43116C25.1942 7.4366 25.5666 7.44204 25.9378 7.44385C26.0564 7.44422 26.138 7.57549 26.0944 7.69661C25.2885 9.93585 24.5846 10.9781 22.4829 11.1416C20.849 11.1416 19.3163 11.7341 18.1943 12.9214L14.5034 10.5817Z" fill="white"/>
+                            <defs>
+                            <linearGradient id="paint0_linear" x1="9.00847" y1="1.4854" x2="43.821" y2="33.9771" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#FF5E5F"/>
+                            <stop offset="1" stop-color="#F54748"/>
+                            </linearGradient></defs></svg>
+                    </a>
+                </div>
+                <input type="checkbox" id="check" hidden>
+                <div class="abc">
+                    <nav class="nav__list-link">
+                        <ul class="nav_link">
+                            <li class="item__link"><a style="color: #F54b4b;" href="#">Home</a></li>
+                            <li class="item__link"><a href="#">Menu</a></li>
+                            <li class="item__link"><a href="#">Service</a></li>
+                            <li class="item__link"><a href="#">Shop</a></li>
+                        </ul>
+                    </nav>
+                    <form action="get" class="form__input-search">
+                        <span class="header__icon-search">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                        <input type="text" placeholder="Search">
+                        <span class="header__icon-shopping">
+                            <i class="fa-solid fa-basket-shopping"></i>
+                        </span>
+                    </form>
+                </div>
+                <label for="check" class="nav-bar">
+                    <i class="fa-solid fa-bars"></i>
+                </label>
+                
+            </div>
+            <div class="header__content">
+                <div class="row sub__content-header">
+                    <div class="col content__left l-6 m-12 c-12">
+                        <div class="content__left-top">
+                            <h3>More than Faster</h3>
+                            <span>
+                                <img src="./aseet/img/rautay.png" alt="">
+                            </span>
+                        </div>
+                        <div class="content__left-mid">
+                            <h1>Groceries delivered in as little as<span> 2 hours</span></h1>
+                            <p>Grocen atssures fresh grocery every morning to your family without getting out in this pandemic.</p>
+                        </div>
+                        <div class="content__left-bottom">
+                            <a href="#">Order Now</a>
+                            <div class="icon-play">
+                                <i class="fa-solid fa-caret-right"></i>
+                            </div>
+                            <span class="order_process">order process</span>
+                        </div>
+                    </div>
+                    <div class="col content__right l-6 m-12 c-12">
+                        <img src="./aseet/img/header-img.png" alt="" class="img__header">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="content_secsion1">
+            <div class="content__Serve">
+                <div class="row">
+                    <div class="col l-12 m-12 c-12 sub__serve">
+                        <p>What we Serve</p>
+                        <h2>Fruit And Vegetable Delivered To Your Home</h2>
+                    </div>
+                    <div class="col l-12 m-12 c-12 sub__serve-info">
+                        <div class="grid wide row">
+                            <div class="col l-4 m-12 c-12 item_serve">
+                                <div class="box__serve-info">
+                                    <div class="item__box-info-psedo"></div>
+                                    <div class="item__box-info">
+                                        <img src="./aseet/img/free-shipping_6874031.png" alt="">
+                                        <div class="content_box-info">
+                                            <h3>Free shipping</h3>
+                                            <p>Enjoy Order in a hand using the fresness of groceries</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col l-4 m-12 c-12 item_serve">
+                                <div class="box__serve-info">
+                                    <div class="item__box-info-psedo"></div>
+                                    <div class="item__box-info">
+                                        <img src="./aseet/img/salary_3135673.png" alt="">
+                                        <div class="content_box-info">
+                                            <h3>Free shipping</h3>
+                                            <p>Enjoy Order in a hand using the fresness of groceries</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col l-4 m-12 c-12 item_serve">
+                                <div class="box__serve-info">
+                                    <div class="item__box-info-psedo"></div>
+                                    <div class="item__box-info">
+                                        <img src="./aseet/img/encrypted_6773186.png" alt="">
+                                        <div class="content_box-info">
+                                            <h3>Free shipping</h3>
+                                            <p>Enjoy Order in a hand using the fresness of groceries</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="content_secsion2">
+            <div class="row">
+                <div class="col l-7 m-12 c-12 sub__content-section-left">
+                    <img src="./aseet/img/feat.png" alt="" class="img-content">
+                </div>   
+                <div class="col l-5 m-12 c-0 sub__content-section-right">
+                    <div class="item_content">
+                        <h5>WHY CHOOSE US</h5>
+                        <h2>Find Favorites and Discover New Ones</h2>
+                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus blanditiis praesen voluptatum deleniti.</p>
+                        <a href="#">Explore Now</a>
+                    </div>
+                </div>   
+            </div>
+        </section>
+        <section id="content_secsion3">
+            <div class="row">
+                <div class="col l-6 m-12 c-0 sub__content-section2-left">
+                    <div class="item_content">
+                        <h5>HOME DELIVERY</h5>
+                        <h2>Sit At Home We Will Take Care Your Order</h2>
+                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos</p>
+                        <a href="#">Explore Now</a>
+                    </div>
+                </div>   
+                <div class="col l-6 m-12 c-12 sub__content-section2-right">
+                    <img src="./aseet/img/feat2.png" alt="" class="img-content">
+                </div>   
+            </div>
+        </section>
+        <section id="content_secsion4">
+            <div class="content_dowload">
+                <div class="row">
+                    <div class="col l-6 m-12 c-12 sub__content-section4-left">
+                        <img src="./aseet/img/mobile.svg" alt="" class="img-content">
+                    </div>  
+                    <div class="col l-6 m-12 c-0 sub__content-section4-right">
+                        <div class="item_content">
+                            <h5>Download our app</h5>
+                            <h2>Get The Groceries App Order More Easily.</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.</p>
+                        </div>
+                        <div class="row">
+                            <div class="col l-8 m-6">
+                                <div class="link_secsion">
+                                    <a href="#" class="apple_btn">
+                                        <img src="./aseet/img/apple.svg" alt="">
+                                        <span>App Store</span>
+    
+                                    </a>
+                                    <a href="#" class="ggplay_btn">
+                                        <img src="./aseet/img/playstore.svg" alt="">
+                                        <span>Play Store</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div class="footer_content_top">
+                <div class="row">
+                    <div class="col l-4 m-12 c-12">
+                        <div class="content_top_left-footer">
+                            <img src="./aseet/img/logofooter.svg" alt="">
+                            <p>Fast delivery, which is active all over the world, serves with many transportation vehicles.</p>
+                        </div>
+                    </div>
+                    <div class="col l-8 m-12 c-12">
+                        <div class="content_top_right-footer">
+                            <div class="row">
+                                <div class="col m-12 l-4 c-12">
+                                    <h4>Company</h4>
+                                    <ul>
+                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="#">Blog</a></li>
+                                        <li><a href="#">All Products</a></li>
+                                        <li><a href="#">All Products</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col m-12 l-4 c-12">
+                                    <h4>Services</h4>
+                                    <ul>
+                                        <li><a href="#">Order tracking</a></li>
+                                        <li><a href="#">Wish List</a></li>
+                                        <li><a href="#">My account</a></li>
+                                        <li><a href="#">Terms & Conditions</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col m-12 l-4 c-12">
+                                    <h4>Get in Touch</h4>
+                                    <p>Subscribe to our weekly Newsletter and receive updates via email.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="line">
+            </div>
+            <div class="footer_content_bottom">
+                <div class="row">
+                    <div class="col m-6 l-12 c-12">
+                        <div class="footer_content_bottom-left">
+                            <p>All Rights Reserved @ BESNIK 2021</p>
+                        </div>
+                    </div>
+                    <div class="col m-6 l-12 c-12">
+                        <div class="footer_content_bottom-right">
+                            <a href="#">Terms & Conditions</a>
+                            <a href="#">Privacy & Policy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+                
+
+
+        </footer>
+    </main>    
+</body>
+</html>
