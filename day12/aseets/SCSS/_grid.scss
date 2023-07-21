@@ -1,0 +1,12 @@
+@mixin grid($colum,$spacing){
+    display: flex;
+    margin-left: calc(-1 * $spacing);
+    flex-wrap: wrap;    
+    row-gap: $spacing;
+
+    >*{
+        width: calc(100% / $colum - $spacing);
+        text-align: center;
+        margin-left: $spacing;
+    }
+}

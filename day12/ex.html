@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeWorkday12</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./aseets/css/style.css">
+</head>
+<body>
+    <div class="box-login">
+        <div class="info">
+
+            <div class="info-left">
+                <div class="info-left__logo">
+                    <img src="./aseets/img/img_viking.png" alt="logo viking">
+                </div>
+                <h2 class="info-left__title">WELCOM TO</h2>
+                <h1 class="info-left__namelogo">VIKINGER</h1>
+                <p class="info-left__text">The next generation social network & community! Connect with your friends and play with our quests and badges gamification system!</p>
+                <div class="info-left__btn--submit">
+                    <!-- <input class="label-login" name="check"  type="radio" hidden id="check_login"> -->
+                    <label for="check_login" class="submit_login">Login</label>
+                    <label for="check_register" class="submit_register">register</label>
+                </div>
+            </div>
+
+
+            <div class="info-right">
+                <input class="label-login" name="check" checked type="radio" hidden id="check_login">
+                <div class="info-right__form-login">
+                    <div class="info-right__logo">
+                        <img src="./aseets/img/rocket.png" alt="">
+                    </div>
+                    <h2 class="info-right__form-login--title">Account Login</h2>
+                    <form action="get" class="info-right__form">
+                        <div class="info-right__form--input">
+                            <input class="input-login" type="text" id="login__username" placeholder=" " required>
+                            <label class="input-label" for="login__username">Username or Email</label>
+                        </div>
+                        <div class="info-right__form--input">
+                            <input placeholder=" " required class="input-login" type="password" id="login__password">
+                            <label class="input-label" for="login__password">password</label>
+                        </div>
+                        <div class="info__form">
+                            <div class="info__form-left">
+                                <input hidden type="checkbox" id="check_remember">
+                                <label class="remember" for="check_remember">Remember Me
+                                    <i class="fa-solid fa-xmark" style="color: #fff;"></i>
+                                </label>
+                            </div>
+                            <div class="info__form-left">
+                                <a href="#">Forgot Password?</a>
+                            </div>
+                        </div>
+                        <a href="#" class="form__submit">Login to your Account!</a>
+                    </form>
+                    <div class="social-account">
+                        <hr>
+                        <p  class="social-account__text">
+                            Login with your Social Account
+                        </p>
+                    </div>
+                    <div class="nav__social">
+                        <a href="#">
+                            <img src="./aseets/img/fb.svg" alt="">
+                        </a>
+                        <a href="#">
+                            <img src="./aseets/img/twter.svg" alt="">
+                        </a>
+                        <a href="#">
+                            <img src="./aseets/img/twich.svg" alt="">
+                        </a>
+                        <a href="#">
+                            <img src="./aseets/img/ytb.svg" alt="">
+                        </a>
+                    </div>
+                </div>
+
+
+
+
+
+
+                <input class="label-register" type="radio" name="check" hidden id="check_register">
+                <div class="info-right__form-register">
+                    <div class="info-right__logo">
+                        <img src="./aseets/img/rocket.png" alt="">
+                    </div>
+                    <h2 class="info-right__form-login--title">Create your Account!</h2>
+                    <form action="get" class="info-right__form">
+                        <div class="info-right__form--input">
+                            <input class="input-login" type="text" id="login__username" placeholder=" " required>
+                            <label class="input-label" for="login__username">Your Email</label>
+                        </div>
+                        <div class="info-right__form--input">
+                            <input placeholder=" " required class="input-login" type="password" id="login__password">
+                            <label class="input-label" for="login__password">User</label>
+                        </div>
+                        <div class="info-right__form--input">
+                            <input placeholder=" " required class="input-login" type="password" id="login__password">
+                            <label class="input-label" for="login__password">Password</label>
+                        </div>
+                        <div class="info-right__form--input">
+                            <input placeholder=" " required class="input-login" type="password" id="login__password">
+                            <label class="input-label" for="login__password">Repeat Password</label>
+                        </div>
+                        <div class="info__form">
+                            <div class="info__form-left left-form">
+                                <input hidden type="checkbox" id="check_rememberi" class="register">
+                                <label class="remember-left" for="check_rememberi">Send me news and updates via email
+                                    <i class="fa-solid fa-xmark" style="color: #fff;"></i>
+                                </label>
+                            </div>
+
+                        </div>
+                        <a href="#" class="form__submitt">Register Now!</a>
+                    </form>
+                    <div class="subb_titile">
+                        <p>You'll receive a confirmation email in your inbox with a link to activate your account. If you have any problems,<span>contact us</span>!</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
