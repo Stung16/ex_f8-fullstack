@@ -25,12 +25,14 @@ body{
     margin: 20px;
     justify-content: space-between;
     &-left{
-        flex: 40%;
-        height:100%;
+        flex: 50%;
+        height:80%;
         margin-right: 15px;
         text-align: center;
-        margin-top: 130px;
+        margin-top: 80px;
         display: block;
+        margin-left: 160px;
+
         &__logo img{
             margin: 0 auto;
             display: block;
@@ -38,7 +40,7 @@ body{
         }
         &__title{
             font-family: 'Titillium Web', sans-serif;
-            margin-top: 36px;
+            margin-top: 20px;
             font-size: 25px;
             font-weight: 500;
             color: #fff;
@@ -47,17 +49,17 @@ body{
             color: #fff;
             font-family: 'Titillium Web', sans-serif;
             font-weight: 900;
-            font-size: 130px;
-            line-height: 130px;
+            font-size: 104px;
+            line-height: 70px;
         }
         &__text{
             color: #fff;
             font-family: 'Rajdhani', sans-serif;
-            max-width: 50%;
+            max-width: 90%;
             text-align: center;
             display: block;
             margin: 30px auto 0 auto;
-            font-size: 22px;
+            font-size: 18px;
             line-height: 24px;
             font-weight: 500;
         }
@@ -72,7 +74,7 @@ body{
             height: 54px;
             border: 1px solid #fff;
             color: #fff;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             line-height: 54px;
             text-align: center;
@@ -87,7 +89,7 @@ body{
             font-family: 'Rajdhani', sans-serif;
             border: 1px solid #fff;
             color: #fff;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             line-height: 54px;
             text-align: center;
@@ -97,8 +99,8 @@ body{
         }
     }
     &-right{
-        flex: 40%;
-        height: 900px;
+        flex: 50%;
+        height: 700px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -108,9 +110,9 @@ body{
             opacity: 0;
             transition: linear 0.3s;
             margin: 0 auto;
-            width: 550px;
+            width: 485px;
             height: 85%;
-            margin-bottom:40px;
+            // margin-bottom:40px;
             padding: 65px;
             background-color: #fff;
             border-radius: 15px;
@@ -121,37 +123,40 @@ body{
                     text-align: center;
                     font-weight: 700;
                     color: #3e3f5e;
-                    font-size: 18px;
-                    line-height: 18px;
+                    font-size: 14px;
+                    line-height: 14px;
                     background-color: #fff;
-                    padding: 5px;
+                    padding: 5px 5px;
                     position: absolute;
                     left: 50%;
-                    top: -15px;
+                    top: -13px;
                     transform: translatex(-50%);
-                    width: 250px;
+                    width: 200px;
 
                 }
             }   
             .nav__social{
-                margin-top: 40px;
+                margin-top: 30px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 & a{
-                    display: block;
-                    width: 60px;
-                    height: 60px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 40px;
+                    height: 40px;
                     border-radius: 12px;
                     margin-left: 12px;
 
+
                 }
                 & a img{
-                    display: block;
-                    width: 20px;
-                    height: 20px;
+                    display: flex;
+                    width: 12px;
+                    height: 12px;
                     margin: 0 auto;
-                    transform: translateY(100%);
+
                     fill: #fff;
 
                 }
@@ -159,8 +164,8 @@ body{
             &--title{
                 font-family: Rajdhani, sans-serif;
                 font-weight: 700;
-                font-size: 30px;
-                line-height: 28px;
+                font-size: 26px;
+                line-height: 26px;
                 color: #3e3f5e;
                 text-align: center;
             }
@@ -168,8 +173,8 @@ body{
         &__form-register{
             position: relative;
             margin: 0 auto;
-            width: 550px;
-            height: 100%;
+            width: 485px;
+            height: 110%;
             margin-bottom:40px;
             padding: 65px;
             background-color: #fff;
@@ -182,28 +187,36 @@ body{
                 font-family: Rajdhani, sans-serif;
                 width: 100%;
                 font-weight: 700;
-                font-size: 18px;
+                font-size: 14px;
                 background-color: #23d2e2;
                 text-align: center;
                 border-radius: 12px;
-                height: 64px;
-                line-height: 64px;
+                height: 54px;
+                line-height: 54px;
                 margin-bottom: 30px;
                 &:hover{
                     background-color: #1bc5d4;;
                 }
             }
+            .info-right__logo{
+                top: 20px;
+                & img{
+                    width: 160px;
+
+                }
+            }
             .subb_titile{
                 font-family: Rajdhani, sans-serif;
-                font-weight: 500;font-size: 18px;
-                line-height: 26px;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 24px;
                 color: #3e3f5e;
                 & span{
                     color: #1bc5d4;
                     font-family: Rajdhani, sans-serif;
-                    font-weight: 700;
-                    font-size: 18px;
-                    line-height: 26px;
+                    font-weight: 600;
+                    font-size: 14px;
+                    line-height: 24px;
                 }
 
             }
@@ -227,13 +240,13 @@ body{
                 font-family: Rajdhani, sans-serif;
                 width: 100%;
                 font-weight: 700;
-                font-size: 18px;
+                font-size: 14px;
                 background-color: #615dfa;
                 text-align: center;
                 border-radius: 12px;
-                height: 64px;
-                line-height: 64px;
-                margin-bottom: 80px;
+                height: 54px;
+                line-height: 54px;
+                margin-bottom: 48px;
                 &:hover{
                     background-color: #5753e4;
                 }
@@ -245,12 +258,12 @@ body{
             }
             &--input .input-login{
                 width: 100%;
-                border-radius: 15px;
+                border-radius: 8px;
                 outline: none;
                 font-size: 18px;
                 line-height: 24px;
                 font-weight: 500;
-                padding: 20px 18px;
+                padding: 13px 18px;
                 background-color: #fff;
                 color: #3e3f5e;
                 border: none;
@@ -258,7 +271,7 @@ body{
             }
             &--input label{
                 color: #adafca;
-                font-size: 19px;
+                font-size: 16px;
                 font-weight: 600;
                 position: absolute;
                 left: 18px;
@@ -275,7 +288,7 @@ body{
 }
 [class='input-login']:not(:placeholder-shown) +.input-label,
 [class='input-login']:focus +.input-label {
-    font-size: 16px;
+    font-size: 13px;
     top: 0;
     left: 17px;
 }
@@ -286,7 +299,7 @@ body{
 .info__form{
     display: flex;
     justify-content: space-between;
-    margin: 30px 0 50px 0;
+    margin-bottom:30px;
     &-left input:checked ~.remember::after{
         background-color: #23d2e2;
 
@@ -300,7 +313,7 @@ body{
         font-family: Rajdhani,sans-serif;
         position: relative;
         padding-left: 34px;
-        font-size: 17px;
+        font-size: 14px;
         font-weight: 700;
         line-height: 22px;
         cursor: pointer;
@@ -309,8 +322,8 @@ body{
         &::after{
             content: "";
             display: block;
-            width: 25px;
-            height: 25px;
+            width: 20px;
+            height: 20px;
             background-color: #fff;
             border-radius: 5px;
             border: 1px solid #cccccc60;
@@ -323,7 +336,7 @@ body{
     &-left .remember i{
         position: absolute;
         z-index: 1;
-        left: 7px;
+        left: 3.6px;
         transform: translateY(-50%);
         top: 50%;
         display: none;
@@ -331,7 +344,7 @@ body{
     }
     &-left a{
         font-family: Rajdhani,sans-serif;
-        font-size: 17px;
+        font-size: 14px;
         font-weight: 700;
         line-height: 22px;
         cursor: pointer;
@@ -382,7 +395,7 @@ body{
     font-family: Rajdhani,sans-serif;
     position: relative;
     padding-left: 34px;
-    font-size: 17px;
+    font-size: 14px;
     font-weight: 700;
     line-height: 22px;
     cursor: pointer;
@@ -391,12 +404,12 @@ body{
     &::after{
         content: "";
             display: block;
-            width: 25px;
-            height: 25px;
+            width: 20px;
+            height: 20px;
             background-color: #fff;
             border-radius: 5px;
             border: 1px solid #cccccc60;
-            left: 0;
+            left: 3.5px;
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -419,13 +432,13 @@ body{
     display: block;
 
 }
-[class='label-login']:checked ~.info-right .info-right__form-login{
+[class='label-login']:checked ~.info-right__form-login{
     transform: translateX(300px);
     transition: transform linear 0.3s;
     opacity: 1;
 }
-[class='label-register']:checked ~.info-right .info-right__form-register{
-    transform: translateX(-300px);
+[class='label-register']:checked ~.info-right__form-register{
+    transform: translateX(-170px);
     opacity: 1;
     
 }
