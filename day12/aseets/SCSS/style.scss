@@ -9,19 +9,15 @@
 body{
     font-size: 16px;
     background-color: #fff;
-    background-image: url(/day12/aseets/img/bg_img.jpg);
+}
+.box-login{
     background-size: cover;
     background-repeat: no-repeat;
     object-fit: cover;
-    position: fixed;
-    inset: 0;
-
-}
-.box-login{
-
     width: 100%;
     height: 100%;
-
+    position: fixed;
+    inset: 0;
 }
 .info{
     display: flex;
