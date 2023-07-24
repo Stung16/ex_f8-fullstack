@@ -69,8 +69,11 @@ body {
 .info-left__btn--submit {
   display: inline-flex;
   margin-top: 40px;
+
 }
 .info-left__btn--submit .submit_login {
+  cursor: pointer;
+
   color: #fff;
   width: 180px;
   font-family: "Rajdhani", sans-serif;
@@ -85,6 +88,8 @@ body {
   border-radius: 12px 0 0 12px;
 }
 .info-left__btn--submit .submit_register {
+  cursor: pointer;
+
   color: #fff;
   border-radius: 0 12px 12px 0;
   width: 180px;
