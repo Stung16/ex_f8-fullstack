@@ -1282,9 +1282,6 @@ footer .socail .socail-right img {
     width: 3rem;
     height: 3rem;
   }
-  /* .header-right .menu {
-    display: none;
-  } */
   .header-right .nav-bar {
     display: block;
   }
@@ -1330,7 +1327,6 @@ footer .socail .socail-right img {
     width: 100%;
     padding: 0;
   }
-
   .section-hero .box-quality .row {
     display: flex;
     flex-direction: row;
