@@ -49,7 +49,7 @@ btn.addEventListener('click',function(){
             const addtask = document.createElement('label')
             addtask.innerText= ('Add Task')
             addtask.style.color='#fff'
-            addtask.style.padding='5px 9px'
+            addtask.style.padding='5px 8px'
             btn_action.appendChild(addtask)
 
             addtask.addEventListener('click',function(){
