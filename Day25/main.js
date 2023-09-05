@@ -27,37 +27,18 @@ var pagination = Array.from(carouselItems).map((item,index) => (
   `<span class="${index === 0 ? "active" : ""}" data-index="${index}"></span>`
 )).join("")
 
-
 dots.innerHTML = pagination
   var dot = dots.querySelectorAll('span')
 
-
-// lắng nghe sự kiện click vào nút next
-var position = 0;
-var index = 0;
-
-function nextSlide () {
-  if (Math.abs(position) < totalWidth - itemWidth) {
-   
-    position -= itemWidth;
-
-
-
+  
+dot.forEach(function (dott, index) {
+  dott.addEventListener('click',function(){
+    position = itemWidth * -index;
     carouselInner.style.translate = `${position}px`;
-
-  }
-}
-function prevSlide () {
-  if (Math.abs(position) < totalWidth - itemWidth) {
-   
-    position += itemWidth;
-
+    this.classList.add('active')
     
-
-    carouselInner.style.translate = `${position}px`;
-
-  }
-}
+  })
+});
 // dotsItem.forEach(function (dot, i) {
 //   if (dot.classList.contains("active")) {
 //     dot.classList.remove("active");
@@ -66,6 +47,18 @@ function prevSlide () {
 //     dot.classList.add("active");
 //   }
 // });
+
+  // lắng nghe sự kiện click vào nút next
+var position = 0;
+var index = 0;
+
+function nextSlide () {
+
+}
+function prevSlide () {
+
+}
+
 nextBtn.addEventListener("click", function () {
   if (Math.abs(position) < totalWidth - itemWidth) {
    
