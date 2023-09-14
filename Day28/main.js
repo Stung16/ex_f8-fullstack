@@ -1,8 +1,7 @@
 var progressBar = document.querySelector(".progress-bar");
 var progress = progressBar.querySelector(".progress");
-var progressSpan = document.querySelector(".dot");
-var currentTimeEl = progressBar.previousElementSibling;
-
+var progressSpan = progress.querySelector("span");
+var time_hover = progressBar.querySelector(".time-hover");
 
 //Yêu cầu: Chuyển đổi hết thành phần trăm (%)
 
@@ -15,21 +14,19 @@ var progressBarWidth = progressBar.clientWidth;
 var isDrag = false; //Cắm cờ
 var initialClientX;
 var initialValue = 0;
-var value; 
-var timeNowvalue
+var value;
 
 progressBar.addEventListener("mousedown", function (e) {
   if (e.which === 1) {
     var offsetX = e.offsetX;
     value = (offsetX * 100) / progressBarWidth;
-    var currentTimeClick = (value / 100) * audio.duration;
-    audio.currentTime = currentTimeClick;
     initialValue = value;
     initialClientX = e.clientX;
     isDrag = true;
     handleUpdateValue(value);
-    
-    
+    var currentTime = (value / 100) * audio.duration;
+    currentTimeEl.innerText = getTime(currentTime);
+    audio.currentTime = currentTime;
   }
 });
 
@@ -47,8 +44,6 @@ document.addEventListener("mousemove", function (e) {
     value = (moveWidth * 100) / progressBarWidth;
     value = initialValue + value;
 
-    currentTimeEl.innerText = getTime((audio.duration * value) / 100);
-
     if (value < 0) {
       value = 0;
     }
@@ -58,27 +53,26 @@ document.addEventListener("mousemove", function (e) {
     }
 
     handleUpdateValue(value);
+    var currentTime = (value / 100) * audio.duration;
+    currentTimeEl.innerText = getTime(currentTime);
   }
 });
 
-
 document.addEventListener("mouseup", function () {
-  isDrag = false;
-  initialValue = value;
-
-  audio.currentTime = (value / 100) * audio.duration;
-
-  currentTimeEl.innerText = getTime((audio.duration * value) / 100);
-  
+  if (isDrag) {
+    isDrag = false;
+    initialValue = value;
+    var currentTime = (value / 100) * audio.duration;
+    audio.currentTime = currentTime;
+  }
 });
 
 //Xây dựng trình phát nhạc
 var audio = document.querySelector(".audio");
-var totalTime = audio.duration;
-
 
 var durationEl = progressBar.nextElementSibling;
 
+var currentTimeEl = progressBar.previousElementSibling;
 
 var playBtn = document.querySelector(".play-btn");
 
@@ -112,42 +106,37 @@ playBtn.addEventListener("click", function () {
 });
 
 audio.addEventListener("timeupdate", function () {
-  // console.log("Đang chạy");
-  currentTimeEl.innerText = getTime(audio.currentTime);
-
   //Lấy ra tỷ lệ phần trăm dựa vào currentTime và duration
-  value = (audio.currentTime * 100) / audio.duration;
-
-  handleUpdateValue(value);
+  var value = (audio.currentTime * 100) / audio.duration;
+  // console.log("Đang chạy");
+  if (!isDrag) {
+    currentTimeEl.innerText = getTime(audio.currentTime);
+    handleUpdateValue(value);
+  }
 });
-
-// hover
-
-var time_hover = document.querySelector('.time-hover')
-progress.style.display = "flex";
-time_hover.style.display = "none";
-
-
-progressBar.addEventListener('mousemove',function(e) {
-  value = (e.offsetX / progressBarWidth) * 100;
-  time_hover.style.display = "block"
-  time_hover.style.left = `${value}%`;
-  time_hover.innerHTML = getTime((audio.duration * value) / 100);
-})
+progressBar.addEventListener("mousemove", function (e) {
+  time_hover.classList.add("show");
+  var raze = (e.offsetX * 100) / progressBarWidth;
+  var currentTime = (raze / 100) * audio.duration;
+  time_hover.innerText = getTime(currentTime);
+  time_hover.style.left = `${e.offsetX}px`;
+});
 progressBar.addEventListener("mouseout", function () {
-  time_hover.style.display = "none";
+  time_hover.classList.remove("show");
+  time_hover.innerText = 0;
+  time_hover.style.left = 0;
 });
-progressSpan.addEventListener('mousemove',function(e){
-  e.stopPropagation()
-})
-
-
-
-
-// end nhạc về start
 audio.addEventListener("ended", function () {
-  value = 0;
-  audio.currentTime = 0;
-  handleUpdateValue(value);
   playBtn.innerHTML = playBtnIcon;
+  handleUpdateValue(0);
+  audio.currentTime = 0;
+});
+progressSpan.addEventListener("mousemove", function (e) {
+  e.stopPropagation();
+});
+audio.addEventListener("play", function () {
+  playBtn.innerHTML = pauseBtnIcon;
+});
+audio.addEventListener("pause", function () {
+    playBtn.innerHTML = playBtnIcon;
 });
