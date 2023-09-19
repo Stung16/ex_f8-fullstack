@@ -24,17 +24,27 @@ body {
   color: #fff;
 }
 
-.list-item.module {
-  background: rgb(255, 111, 0);
-}
 
-.dragging {
-  opacity: 0.5;
-}
-
-.placeholder {
-  display: none;
-  background: #303742;
-  pointer-events: none;
-}
-
+  
+  .list-item.title-module {
+    background: rgb(255, 111, 0);
+  }
+  
+  .opacity {
+    opacity: 0.5;
+  }
+  
+  .placeholder {
+    display: none;
+    background: #303742;
+    pointer-events: none;
+  }
+  .flex{
+    display: flex;
+  }
+  
+  /* .list-scroll {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  } */
