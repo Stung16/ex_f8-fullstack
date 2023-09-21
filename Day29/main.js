@@ -34,6 +34,9 @@ list.addEventListener('dragover',function(e) {
     list.insertBefore(itemDrag, node);
 })
 
+
+
+
   list.addEventListener("dragend", function () {
     const listItem = document.querySelectorAll(".list-item:not(.title-module) span");
     const listModule = document.querySelectorAll(".title-module span");

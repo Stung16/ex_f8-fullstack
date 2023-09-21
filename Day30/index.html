@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeWork</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <h2 class="title">Doc Editor</h2>
+        <hr>
+        <div class="controls">
+            <div class="control control-left">
+                <div class="drop-down">
+                    <button class="btn btn-file">File</button>
+                    <div class="btn-dropdown">
+                        <button id="new-btn">New</button>
+                        <button id="text-download-btn">Save as TXT</button>
+                        <button id="pdf-download-btn">Save as PDF</button>
+                    </div>
+                </div>
+                <input type="text" name="name-file" id="name-file" value="untitled">
+            </div>
+            <div class="control control-right">
+                <button class="btn btn-bold">b</button>
+                <button class="btn btn-underline">u</button>
+                <button class="btn btn-italic">i</button>
+                <input type="color" name="color" id="color">
+            </div>
+        </div>
+        <div class="content" contenteditable="true" spellcheck="false"></div>
+        <div class="control-footer">
+            <span class="index-char">Số ký tự: 0</span>
+            <span class="index-word">Số từ: 0</span>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./main..js"></script>
+</body>
+</html>
