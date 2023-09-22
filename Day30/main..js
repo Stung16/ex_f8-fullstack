@@ -17,19 +17,23 @@ var check =false
 
 
 
-btn_file.addEventListener("click",function() {
-    if(!check){
+btn_file.addEventListener("click",function(e) {
+    e.preventDefault();
         btn_drop.classList.add("active")
         check = true
-    }else{
-        btn_drop.classList.remove("active")
-        check = false
-    }
+
 })
 
-document.addEventListener("click",function() {
-    // btn_drop.classList.remove("active")
-})
+document.addEventListener("click",function(e) {
+    // if(e.target.nodeName === "BUTTON"){
+    //     btn_drop.classList.add("active")
+    //     check = true
+    // }else{
+    //     btn_drop.classList.remove("active")
+    //     check = false
+    // }
+    console.log(btn_file.contains(e.target));
+    })
 
 
 function setBold() {
@@ -67,8 +71,8 @@ inputContent.addEventListener("input",function() {
         var cleanText = inputContent.innerText.replace(/\s+/g, " ");
         const countWords = cleanText.trim().split(" ").length;
         const countCharacters = inputContent.innerText.trim().length;
-        document.querySelector(".index-char").innerText = `Số ký tự: ${countWords}`;
-        document.querySelector(".index-word").innerText = ` Số từ: ${countCharacters}`;
+        document.querySelector(".index-word").innerText = `Số ký tự: ${countWords}`;
+        document.querySelector(".index-char").innerText = ` Số từ: ${countCharacters}`;
     }
 
 })
