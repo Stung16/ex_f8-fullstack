@@ -24,5 +24,7 @@ const actionCounter = function(start) {
     window.requestAnimationFrame(actionCounter);
   }
 };
-requestAnimationFrame(actionCounter)
+document.addEventListener("DOMContentLoaded", function () {
+    requestAnimationFrame(actionCounter)
+});
 
