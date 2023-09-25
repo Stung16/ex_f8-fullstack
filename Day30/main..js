@@ -17,23 +17,41 @@ var check =false
 
 
 
-btn_file.addEventListener("click",function(e) {
-    e.preventDefault();
-        btn_drop.classList.add("active")
-        check = true
+// btn_file.addEventListener("click",function(e) {
+//     e.preventDefault();
+//     if(!check){
+//         btn_drop.classList.add("active")
+//         check = true
+//     }else{
+//         btn_drop.classList.remove("active")
+//         check = false
+//     }
 
+// })
+function setDropDown() {
+    if (!check) {
+        btn_drop.classList.add("active");
+        check = true;
+    } else {
+        btn_drop.classList.remove("active");
+        check = false;
+    }
+  }
+  
+  btn_file.addEventListener("click", (e) => {
+    e.stopPropagation();
+    setDropDown();
+  });
+
+
+document.addEventListener("click",function() {
+    btn_drop.classList.remove("active")
+    check = false
 })
 
-document.addEventListener("click",function(e) {
-    // if(e.target.nodeName === "BUTTON"){
-    //     btn_drop.classList.add("active")
-    //     check = true
-    // }else{
-    //     btn_drop.classList.remove("active")
-    //     check = false
-    // }
-    console.log(btn_file.contains(e.target));
-    })
+
+
+
 
 
 function setBold() {
