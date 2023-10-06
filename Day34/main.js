@@ -12,8 +12,6 @@ box_img.addEventListener("mousemove", function (e) {
   let percentBorderX = ((e.pageX - this.offsetLeft) / imgWidth) * 100;
   let percentBorderY = ((e.pageY - this.offsetTop) / imgHeight) * 100;
 
-// console.log(e.clientX,e.clientY,e.pageX,e.pageY);
-  if(e.clientX + 50 < )
 
   shadow_box.style.display = "block";
   shadow_box.style.left = `${e.clientX }px`
