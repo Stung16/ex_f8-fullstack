@@ -26,7 +26,6 @@ btnVoice.addEventListener("click", function () {
     result.style.visibility = "visible";
   };
   recognition.onend = function (event) {
-    // .setAttribute("hidden", "");
     transcript = transcript
       .toLowerCase()
       .replaceAll(".", "")
