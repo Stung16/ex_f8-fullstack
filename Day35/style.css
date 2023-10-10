@@ -107,6 +107,17 @@ body{
 }
 
 
+.task-title-done{
+    display: block;
+    width: max-content;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #999;
+    cursor: pointer;
+    margin-top: 20px;
+    border: 1px solid #999
+}
+
 
 
 
