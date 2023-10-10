@@ -51,7 +51,7 @@ async function render() {
     return todos.status === false;
   });
 
-  const todoCompleteHtml = todoComplete
+  const todoCompleteHtml = data
     .map((todo) => {
       return `
       <div class="task-item">
@@ -97,7 +97,6 @@ async function render() {
   const task_item_done = document.createElement("div");
   task_item_done.innerHTML = todoCompleteHtml;
   task_list_done.append(task_item_done);
-  // console.log(todoCompleteHtml,todoUnCompleteHtml);
 }
 render();
 
@@ -126,7 +125,7 @@ function add_todo_list() {
       alert("vui lòng nhập todo");
     } else {
       const data = {
-        status: "false",
+        status: "false"
       };
       if (valueInput) {
         data.title = valueInput;
