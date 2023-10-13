@@ -4,8 +4,9 @@ const { PAGE_LIMIT } = config;
 const { SERVER_API } = config;
 const postsEl = document.getElementById("posts");
 const scroll_container = document.getElementById("scroll-container");
+const loading =document.querySelector(".spinner")
 const page = 1;
-const loading = false;
+let isloading = false;
 
 const render = (posts) => {
   postsEl.innerHTML = `
@@ -51,13 +52,16 @@ const render = (posts) => {
   <hr>`
       )
       .join("")}`;
+  loading.classList.remove("show")
+      
 };
 
 const getPosts = async () => {
+  loading.classList.add("show")
   const { data } = await client.get(
     `/posts?_limit=${PAGE_LIMIT}&_page=${page}`
   );
-  loading = true
+  isloading = true
   render(data);
 };
 getPosts();
@@ -65,7 +69,8 @@ getPosts();
 
 
 function loadMoreContent() {
-    const loading =document.querySelector(".spinner")
+    if (isloading) return;
+    isloading = true;
     loading.classList.add("show")
 }
 
