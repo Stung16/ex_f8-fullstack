@@ -1,10 +1,12 @@
-const SEVERAPI = `https://xljxjj-8080.csb.app/todos`;
+const SEVERAPI = `https://y4tqhq-8080.csb.app/todos`;
 const add_todo_btn = document.querySelector(".btn-add");
 const box_add_task = document.querySelector(".box-add-task");
 const btn_save = box_add_task.querySelector(".save-btn");
 const btn_cancel = box_add_task.querySelector(".cancel-btn");
 const task_list = document.querySelector(".task-list");
 const task_list_done = document.querySelector(".task-list-done");
+const search_input = document.querySelector(".search-input")
+// const add_input = box_add_task.querySelector(".add-input")
 
 const getTodo = async () => {
   const response = await fetch(`${SEVERAPI}`);
@@ -42,65 +44,48 @@ const updateTodo = async (id, data) => {
 };
 
 async function render() {
-  const data = await getTodo();
+  const data = await getTodo()
+  const listTodoComplete = data.filter((todo) => todo.status === "true")
+  const listTodoUnComplete = data.filter((todo) => todo.status === "false")
+  var tagControlTodo =`<div class="task-option">
+  <button class="btn-option delete-option">
+    <i class="fa-solid fa-trash-can"></i>
+  </button>
+  <button class="btn-option edit-option">
+    <i class="fa-regular fa-pen-to-square"></i>
+  </button>
+  <button class="btn-option complete-option">
+    <i class="fa-solid fa-check"></i>
+  </button>
+</div>`
 
-  const todoComplete = data.filter((todos) => {
-    return todos.status === true;
-  });
-  const todoUnComplete = data.filter((todos) => {
-    return todos.status === false;
-  });
+  const tagItemCompleHtml = listTodoComplete.map((item) => `
+  <div class="task-item">
+    <p class="task-title">${item.title}</p>
+    ${tagControlTodo}
+  </div>
+  `).join("");
 
-  const todoCompleteHtml = data
-    .map((todo) => {
-      return `
-      <div class="task-item">
-      <p class="task-title">${todo.title}</p>
-      <div class="task-option">
-        <button class="btn-option delete-option">
-          <i class="fa-solid fa-trash-can"></i>
-        </button>
-        <button class="btn-option edit-option">
-          <i class="fa-regular fa-pen-to-square"></i>
-        </button>
-        <button class="btn-option complete-option">
-          <i class="fa-solid fa-check"></i>
-        </button>
-      </div>
-    </div>`;
-    })
-    .join("");
+  const tagItemUnCompleHtml = listTodoUnComplete.map((item) => `
+  <div class="task-item">
+    <p class="task-title">${item.title}</p>
+    ${tagControlTodo}
+  </div>
+  `).join("");
 
-  const todoUnCompleteHtml = todoUnComplete
-    .map((todo) => {
-      return `
-      <div class="task-item">
-      <p class="task-title">${todo.title}</p>
-      <div class="task-option">
-        <button class="btn-option delete-option">
-          <i class="fa-solid fa-trash-can"></i>
-        </button>
-        <button class="btn-option edit-option">
-          <i class="fa-regular fa-pen-to-square"></i>
-        </button>
-        <button class="btn-option complete-option">
-          <i class="fa-solid fa-check"></i>
-        </button>
-      </div>
-    </div>`;
-    })
-    .join("");
-  const task_item = document.createElement("div");
-  task_item.innerHTML = todoUnCompleteHtml;
-  task_list.append(task_item);
+  const tagItemComplete = document.createElement("div")
+  tagItemComplete.innerHTML =  tagItemCompleHtml
+  task_list_done.append(tagItemComplete)
 
-  const task_item_done = document.createElement("div");
-  task_item_done.innerHTML = todoCompleteHtml;
-  task_list_done.append(task_item_done);
+
+  const tagItemUnComplete = document.createElement("div")
+  tagItemUnComplete.innerHTML =  tagItemUnCompleHtml
+  task_list.append(tagItemUnComplete)
+
+
 }
-render();
 
-function add_todo_list() {
+function addTodo() {
   add_todo_btn.addEventListener("click", (e) => {
     e.stopPropagation();
     box_add_task.classList.add("show");
@@ -118,26 +103,56 @@ function add_todo_list() {
     box_add_task.classList.remove("show");
   });
 
-  btn_save.addEventListener("click", async (e) => {
+  btn_save.addEventListener("click", async() => {
     const inputEl = box_add_task.querySelector(".add-input");
     const valueInput = inputEl.value;
-    if (!valueInput) {
-      alert("vui lòng nhập todo");
-    } else {
-      const data = {
-        status: "false"
-      };
-      if (valueInput) {
-        data.title = valueInput;
-      } else {
-        return;
-      }
-
-      await postTodo(data);
-      inputEl.value = "";
-      box_add_task.classList.remove("show");
-      render();
+    const data = {
+      status: "false"
     }
-  });
+    data.title = valueInput
+    await postTodo(data)
+    inputEl.value = "";
+    box_add_task.classList.remove("show");
+     render()
+  })
 }
-add_todo_list();
+
+function deleteTaskTodo(){
+  const removeBtnsUnfinished = task_list.querySelectorAll(".delete-option");
+  const removeBtnsFinished = task_list_done.querySelectorAll(".delete-option");
+  removeBtnsUnfinished.forEach((removeBtn, i) => {
+      removeBtn.addEventListener("click", async (e) => {
+          const data = await getTodo();
+          const todoUnfinished = data.filter((todo) => {
+              return todo.status === "false";
+          });
+
+          await deleteTodo(todoUnfinished[i].id);
+          render();
+      });
+  });
+
+  removeBtnsFinished.forEach((removeBtn, i) => {
+      removeBtn.addEventListener("click", async (e) => {
+          const data = await getTodo();
+          const todoFinished = data.filter((todo) => {
+              return todo.status === "true";
+          });
+
+          await deleteTodo(todoFinished[i].id);
+          render();
+      });
+  });
+
+}
+
+
+
+function start() {
+  render()
+  addTodo()
+  deleteTaskTodo()
+}
+
+
+start()
