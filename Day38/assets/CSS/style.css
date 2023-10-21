@@ -190,7 +190,7 @@ label{
     width: calc(100%/2);
 }
 
-.btn-log-out{
+.btn_sign-out{
     position: absolute;
     width: 10%;
     right: 40px;

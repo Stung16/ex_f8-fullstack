@@ -1,19 +1,10 @@
-/*
-Authentication
-- Xác thực
-- Xác minh xem bạn là ai?
-
-Authorization
-- Ủy quyền
-- Cho biết bạn sẽ được làm gì?
-*/
 
 import { client } from "./client.js";
 import { requestRefesh } from "./token.js"; 
 client.setUrl("https://api-auth-two.vercel.app");
   
 const container = document.querySelector("#container");
-
+const name_user = document.querySelector(".name-user")
 
 const isSign_in = () => {
   //Kiểm tra trạng thái đăng nhập
@@ -21,47 +12,36 @@ const isSign_in = () => {
   if(clickSign_in){
     return true
   }
+  return false
 };
 
 
 const handleLogout = () => {
-    sessionStorage.removeItem('login')
+    localStorage.removeItem('login')
     sessionStorage.removeItem('click-sign_in')
     sessionStorage.removeItem('click-sign_up')
   render();
 };
 
-// const getProfile = async () => {
-//   const tokens = localStorage.getItem("login_token");
-//   if (tokens) {
-//     const { access_token: accessToken,refesh_token: refeshToken } = JSON.parse(tokens);
-//     if (!accessToken) {
-//       //Xử lý logout
-//       handleLogout();
-//     } else {
-//       //set token vào header của request
-//       client.setToken(accessToken);
-//       const { response, data } = await client.get("/auth/profile");
-//       if (!response.ok) {
-//         //Xử lý logout -> 401
-//         // handleLogout();
-//         const { data: newToken } = await requestRefesh(refeshToken)
-//         requestRefesh(refeshToken)
+const getProfile = async () => {
+  const tokens = localStorage.getItem("login");
+  // if (tokens) {
+  //   if(tokens.accessToken) {
+      client.setToken(tokens.accessToken)
+      const {data,response} = await client.get(`/users/profile`)
+      console.log(data, response);
+  //     if(!response.ok) {
+  //       requestRefesh()
+  //     } else {
+  //       name_user.innerText = data.data.name
+  //     }
+  //   } 
+  // }
+};
 
 
-//         if(newToken){
-//           localStorage.setItem("login_token", JSON.stringify(newToken));
-//           getProfile()
-//         }else{
-//           handleLogout()
-//         }
-//       } else {
-//         const profileName = document.querySelector(".profile .name");
-//         profileName.innerText = data.name;
-//       }
-//     }
-//   }
-// };
+
+
 
 
 
@@ -124,9 +104,9 @@ const eventSign_in = () => {
 };
 
 const eventLogout = () => {
-  const logout = document.querySelector("btn_sign-out");
-  if (logout) {
-    logout.addEventListener("click", (e) => {
+  const logOut = document.querySelector(".btn_sign-out");
+  if (logOut) {
+    logOut.addEventListener("click", (e) => {
       e.preventDefault();
       handleLogout();
     });
@@ -135,7 +115,7 @@ const eventLogout = () => {
 
 const render = () => {
   const clickSign_up = sessionStorage.getItem('click-sign_up');
-  const login = sessionStorage.getItem('login');
+  const login = localStorage.getItem('login');
   if (isSign_in()) {
     container.innerHTML = `<div id="sign-in">
     <div class="infor-left-sign_in">
@@ -226,8 +206,7 @@ const render = () => {
         <input id="time" type="datetime-local">
         <button class="btn wirite">Wirite</button>
       </form>
-      <div class="btn btn-log-out">Sign out</div>
-      <!-- <div class="btn btn_sign-out">Sign-out</div> -->
+      <div class="btn btn_sign-out">Sign-out</div>
       <div class="blog-post">
         <div class="post">
           <div class="inner-post">
@@ -248,8 +227,10 @@ const render = () => {
     </div>`
   }
 
+  getProfile()
   eventSign_in()
   eventLogout()
+
 };
 
 render();
@@ -295,10 +276,9 @@ const handleSignin = async ({ email,password}) => {
   });
   if (response.ok) {
     //Cập nhật vào Storage (localStorage)
-    sessionStorage.setItem("login","succses")
-    sessionStorage.setItem("click-sign_up", JSON.stringify(tokens));
+    localStorage.setItem("login","succses")
+    localStorage.setItem("login", JSON.stringify(tokens));
 
-    // console.log("đăng nhập thành công");
     render(); //Render lại giao diện
     
   
@@ -321,8 +301,6 @@ const handleSignup = async ({ email, password, name }) => {
   
   });
   if (response.ok) {
-    //Cập nhật vào Storage (localStorage)
-    localStorage.setItem("login_token", JSON.stringify(tokens));
     sessionStorage.removeItem('click-sign_up');
     render(); //Render lại giao diện
     const formSign_in = document.querySelector(".form-sign_in");
