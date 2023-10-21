@@ -1,10 +1,8 @@
 
 import { client } from "./client.js";
-import { requestRefesh } from "./token.js"; 
 client.setUrl("https://api-auth-two.vercel.app");
   
 const container = document.querySelector("#container");
-const name_user = document.querySelector(".name-user")
 
 const isSign_in = () => {
   //Kiểm tra trạng thái đăng nhập
@@ -17,6 +15,7 @@ const isSign_in = () => {
 
 
 const handleLogout = () => {
+    localStorage.removeItem('status')
     localStorage.removeItem('login')
     sessionStorage.removeItem('click-sign_in')
     sessionStorage.removeItem('click-sign_up')
@@ -24,22 +23,27 @@ const handleLogout = () => {
 };
 
 const getProfile = async () => {
+  const name_user = document.querySelector(".name-user")
+  const avatar_user = document.querySelector(".avatar-user")
+  
+  
   const tokens = localStorage.getItem("login");
-  // if (tokens) {
-  //   if(tokens.accessToken) {
-      client.setToken(tokens.accessToken)
-      const {data,response} = await client.get(`/users/profile`)
-      console.log(data, response);
-  //     if(!response.ok) {
-  //       requestRefesh()
-  //     } else {
-  //       name_user.innerText = data.data.name
-  //     }
-  //   } 
-  // }
+  if (tokens) {
+    const { data: profile } = JSON.parse(tokens); 
+    render()
+    if(profile.accessToken) {
+      client.setToken(profile.accessToken)
+      const {data :infor,response} = await client.get(`/users/profile`)
+      if(response.status !== 200) {
+        requestRefresh()
+      } else {
+        // console.log(name_user);
+        avatar_user.innerText = `${infor.data.name.charAt(0).toUpperCase()}`
+        name_user.innerText = `${infor.data.name}`
+      }
+    }
+  }
 };
-
-
 
 
 
@@ -115,7 +119,7 @@ const eventLogout = () => {
 
 const render = () => {
   const clickSign_up = sessionStorage.getItem('click-sign_up');
-  const login = localStorage.getItem('login');
+  const status = localStorage.getItem('status');
   if (isSign_in()) {
     container.innerHTML = `<div id="sign-in">
     <div class="infor-left-sign_in">
@@ -185,15 +189,15 @@ const render = () => {
     </div>
   </div>`
   }
-  if(login){
+  if(status){
     container.innerHTML = `
     <div id="ui-login">
     <div class="header-blog">
       <h1>bloger</h1>
       <div class="infor-user">
         <div class="infor-user-post">
-          <div class="avatar-user">T</div>
-          <div class="name-user">Kiều Tùng</div>
+          <div class="avatar-user"></div>
+          <div class="name-user">loading ...</div>
       </div>
     </div>
     <div class="main-blogs">
@@ -227,9 +231,9 @@ const render = () => {
     </div>`
   }
 
-  getProfile()
   eventSign_in()
   eventLogout()
+  getProfile()
 
 };
 
@@ -276,7 +280,7 @@ const handleSignin = async ({ email,password}) => {
   });
   if (response.ok) {
     //Cập nhật vào Storage (localStorage)
-    localStorage.setItem("login","succses")
+    localStorage.setItem("status", "sucsess");
     localStorage.setItem("login", JSON.stringify(tokens));
 
     render(); //Render lại giao diện
@@ -302,6 +306,7 @@ const handleSignup = async ({ email, password, name }) => {
   });
   if (response.ok) {
     sessionStorage.removeItem('click-sign_up');
+    
     render(); //Render lại giao diện
     const formSign_in = document.querySelector(".form-sign_in");
     const emailEl = formSign_in.querySelector(".email")
@@ -313,3 +318,18 @@ const handleSignup = async ({ email, password, name }) => {
 };
 
 
+const requestRefresh = async () => {
+  const tokens = localStorage.getItem("login");
+
+  if(tokens) {
+    if(tokens.refreshToken) {
+      const {data,response} = await client.post("/auth/refresh-token",{
+        refreshToken: tokens.refreshToken
+      })
+      if(response.ok) {
+        localStorage.setItem('login',JSON.stringify(data.data.tokens))
+      }
+    }
+  }
+  render()
+}
