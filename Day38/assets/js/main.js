@@ -326,7 +326,6 @@ const handleSignin = async ({ email, password }) => {
     };
     localStorage.setItem("login", JSON.stringify(tokens));
     render(); //Render lại giao diện
-
     renderDatetimePicker()
     
 
@@ -393,7 +392,10 @@ const renderDatetimePicker = () => {
   // getting new date, current year and month
   let date = new Date(),
   currYear = date.getFullYear(),
-  currMonth = date.getMonth();
+  currMonth = date.getMonth(),
+  currDay = date.getDate()
+
+
   
   
 
@@ -403,6 +405,7 @@ const renderDatetimePicker = () => {
 
 
   if (input_date) {
+    input_date.value =`${currYear}-${currMonth+1}-${currDay}`
     input_date.addEventListener("click",() => {
       datetimePicker.style.display= "block"
       if(overlay){
@@ -434,6 +437,7 @@ const renderDatetimePicker = () => {
               datetimePicker.style.display= "none"
           })
       })
+      renderCalendar()
   }
   
   
