@@ -60,18 +60,7 @@ const renderBlogs = async () => {
 };
 
 
-// const postStatus = () => {
-//   const create_post = document.querySelector(".create-post")
-//   if(create_post) {
-//     const handleContent = create_post.querySelector(".content").value
-//     const handleTitle = create_post.querySelector(".title").value
-//     create_post.addEventListener("submit", (e) => {
-//       e.preventDefault()
-//       console.log(handleTitle);
-//       console.log(handleContent);
-//     })
-//   }
-// }
+
 
 const getProfile = async () => {
   const name_user = document.querySelector(".name-user");
@@ -95,6 +84,20 @@ const getProfile = async () => {
     }
   }
 };
+const postStatus = () => {
+  const create_post = document.querySelector(".create-post")
+  if(create_post) {
+    const wirite = create_post.querySelector(".wirite")
+
+    create_post.addEventListener("submit", (e) => {
+      e.preventDefault()
+      console.log(e);
+      const valueContent = e.target.querySelector(".content").value
+      const valueTitle = e.target.querySelector(".title").value
+      const valueTime = e.target.querySelector(".input-date").value
+    })
+  }
+}
 
 const eventSign_in = () => {
   const btn_SignIn = document.querySelector(".btn_sign-in");
@@ -116,11 +119,11 @@ const eventSign_in = () => {
       e.preventDefault();
       const emailEl = e.target.querySelector(".email");
       const passwordEl = e.target.querySelector(".password");
-
       const email = emailEl.value;
       const password = passwordEl.value;
 
       handleSignin({ email, password });
+      
     });
     btn_SignUp.addEventListener("click", (e) => {
       e.preventDefault();
@@ -241,7 +244,7 @@ const render = () => {
           <label for="content">Enter your content</label>
           <textarea id="content" class="content" cols="30" rows="10" placeholder="Content here"></textarea>
           <label for="time">Set time to post</label>
-          <input type="text" class="input-date" readonly="" value="27/10/2023">
+          <input type="text" class="input-date" readonly="">
           <div class="datetime-picker">
             <div class="wrapper">
               <div class="header">
@@ -278,7 +281,7 @@ const render = () => {
   getProfile();
   eventSign_in();
   eventLogout();
-  // postStatus()
+  postStatus()
 };
 
 render();
@@ -437,7 +440,6 @@ const renderDatetimePicker = () => {
               datetimePicker.style.display= "none"
           })
       })
-      renderCalendar()
   }
   
   
