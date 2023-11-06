@@ -10,6 +10,8 @@ export default function App() {
   const [apiKey, setApiKey] = useState(localStorage.getItem("apiKey"));
   const [todos, setTodos] = useState([]);
 
+
+
   const getTodos = async (apiKey) => {
     const { data } = await client.get("/todos", null, apiKey);
     if (data.code === 200) {
@@ -27,6 +29,9 @@ export default function App() {
       localStorage.setItem("apiKey", JSON.stringify(data.data.apiKey));
     } else {
       toast.warning(`${data.message}`);
+      setTimeout(()=>{
+      window.location.reload()
+      },2800)
     }
   };
 

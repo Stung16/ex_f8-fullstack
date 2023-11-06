@@ -17,9 +17,12 @@ function Form_addTodo({ apiKey, getTodos }) {
       } else {
         localStorage.clear();
         toast.error("có lỗi xảy ra vui lòng reload lại!!!");
+        setTimeout(() => {
+          window.location.reload();
+        }, 2800);
       }
     }
-    setTodo("")
+    setTodo("");
   };
   const handleChange = (e) => {
     setTodo(e.target.value);

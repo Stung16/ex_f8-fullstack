@@ -16,6 +16,14 @@ body{
 label{
     color: #fff;
 }
+input{
+    outline: none;
+    border: none;
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+}
 .wapper{
     margin: 0 100px;
     margin-top: 30px;
@@ -54,6 +62,7 @@ label{
 .btn-add{
     outline: none;
     border: none;
+    width: 150px;
     padding: 0.5rem 1rem;
     font-weight: 700;
     background-color: rgb(20 184 166);
@@ -66,17 +75,15 @@ label{
 
 .list-todo{
     background:#181a1b ;
-    width: 60%;
+    width: 70%;
     margin: 0 150px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     margin-top: 5px;
     margin-bottom: 20px;
     border-radius: 10px;
     row-gap: 20px;
-    padding:20px 0;
+    padding:20px 50px;
     }
 .list-todo .todo-item{
     color: #fff;
@@ -87,15 +94,13 @@ label{
     display: flex;
     justify-content: space-between;
 }
-.todo-complete{
-    outline: none;
-    border: none;
-    width: 100%;
-    padding: 5px;
-    border-radius: 5px;
-    font-size: 16px;
-    margin-bottom: 8px;
+
+input[type = "checkbox"]{
+    width: max-content;
+    display: block;
+    margin-top: 7px;
 }
+
 .list-todo .options{
     display: flex;
     column-gap: 8px;
@@ -131,12 +136,9 @@ label{
     display: flex;
     justify-content: space-between;
 }
-.todo-complete{
-    outline: none;
-    border: none;
-    width: 100%;
-    padding: 5px;
-    border-radius: 5px;
-    font-size: 16px;
-    margin-bottom: 8px;
+li input{
+margin-bottom: 8px;
+}
+.check-done{
+    text-decoration:line-through;
 }
