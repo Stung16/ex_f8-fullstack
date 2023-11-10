@@ -12,6 +12,9 @@ body {
   align-items: center;
   display: flex;
 }
+h2{
+  color: #fff;
+}
 .inner-shop {
   padding: 1rem;
   display: flex;

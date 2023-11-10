@@ -33,6 +33,7 @@ export default function App() {
         carts,
       }}
     >
+      {console.log(productsItem)}
       {apiKey ? (
         <div className="shop">
            <div className="inner-shop">
