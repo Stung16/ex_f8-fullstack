@@ -3,7 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
 import Logout from "./Logout";
-const service = import.meta.env.VITE_SERVICE_EMAILJS;
+const service = import.meta.env.VITE_SERVICE_ID_EMAILJS;
 const templateId = import.meta.env.VITE_TEMPLATE_ID_EMAILJS;
 const apiKeys = import.meta.env.VITE_API_PRIVATE_EMAILJS;
 export default function InforUser() {
@@ -28,14 +28,14 @@ export default function InforUser() {
           <div className="inner-box-profile">
             <div className="info">
               <img src={user.picture} className="avatar" />
-              <h3>Xin chào: {user.name} !</h3>
+              <h3 className="center">Xin chào: {user.name} !</h3>
               {user.locale && (
-                <p className="language">
+                <p className="language center">
                   Language: {user.locale === "vi" ? "Tiếng Việt" : user.locale}
                 </p>
               )}
               {user.email && (
-                <p>
+                <p className="center">
                   Email: <a href={`mailto:${user.email}`}>{user.email}</a>
                 </p>
               )}
@@ -66,7 +66,7 @@ export default function InforUser() {
                   rows="10"
                 ></textarea>
               </div>
-              <button type="submit" className="btn btn-support">
+              <button type="submit" className="btn btn-help">
                 Yêu cầu hỗ trợ!
               </button>
             </form>
@@ -75,6 +75,7 @@ export default function InforUser() {
           {/* {(isLoading || loading) && <Loading />} */}
         </div>
       )}
+      
     </>
   );
 }
