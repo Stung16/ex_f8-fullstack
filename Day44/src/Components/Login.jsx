@@ -6,9 +6,9 @@ export default function Login() {
   if (isLoading) {
     return <Loading />;
   }
-  if (error) {
-    return <div>Oops... {error.message}</div>;
-  }
+  // if (error) {
+  //   return <div>Oops... {error.message}</div>;
+  // }
   return (
     <>
       {!isAuthenticated && (

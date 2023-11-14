@@ -30,7 +30,7 @@ export default function InforUser() {
               <img src={user.picture} className="avatar" />
               <h3 className="center">Xin chào: {user.name} !</h3>
               {user.locale && (
-                <p className="language center">
+                <p className="center">
                   Language: {user.locale === "vi" ? "Tiếng Việt" : user.locale}
                 </p>
               )}
