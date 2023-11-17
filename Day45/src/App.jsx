@@ -1,25 +1,26 @@
-import React, { useState,useRef, useEffect, useLayoutEffect } from "react";
+import React, { useState,useRef, } from "react";
 export const SurpriseNumber = React.createContext();
-import { ToastContainer,toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import TableHistory from "./components/TableHistory";
 import "./assets/style.css"
-import HeaderGame from "./components/HeaderGame";
+import Content from "./components/Content";
+import Range from "./components/Range";
+import FormNumber from "./components/FormNumber";
+import TableResult from "./components/TableResult";
 
 export default function App() {
-  const valueInput = useRef()
-  const max_time = useRef(3)
-  const [value,setValue] = useState(5) 
-  const data = []
-  const valueRef= useRef()
+  const inputRef = useRef()
+  const [luckyNumber,setLuckyNumber] = useState(Math.floor(Math.random() * 3)) 
+  const [range,setRange] = useState(5)
+  const [data,setData] = useState(JSON.parse(localStorage.getItem("data")) || [])
+  const [turn,setTurn] = useState(3)
 
-useLayoutEffect(()=>{
-    toast.info("chào mừng bạn đến với trò chơi đếm số")
-},[])
   return (
-    <SurpriseNumber.Provider value={{valueRef,valueInput,value,setValue,data,max_time}}>
-      <HeaderGame />
-      <TableHistory />
+    <SurpriseNumber.Provider value={{luckyNumber,setLuckyNumber,data,setData,inputRef,range,setRange,turn,setTurn}}>
+      <Content />
+      <Range />
+      <FormNumber />
+      <TableResult />
       <ToastContainer autoClose={1500} />
     </SurpriseNumber.Provider>
   );
