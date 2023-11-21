@@ -1,0 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    background: #181a1b;
+    color: #fff;
+}
+button{
+    cursor: pointer;
+}
+image{
+    object-fit: cover;
+}
