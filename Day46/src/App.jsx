@@ -4,8 +4,7 @@ import "./assets/Css/cssDetail.css"
 import Home from './pages/home/Home';
 import Products from './pages/products/Products';
 import CartPage from './pages/cart/CartPage';
-import ProductDetail from './pages/ProductDetail/ProductDetail';
-
+import ProductDetail from './pages/productDetail/ProductDetail';
 
 export default function App() {
   return (
