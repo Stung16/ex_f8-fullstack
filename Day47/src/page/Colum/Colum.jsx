@@ -8,7 +8,8 @@ export default function Colum({ data }) {
     useSortable({ id: data._id, data: { ...data } });
 
   const dndStyleColumn = {
-    transform: CSS.Transform.toString(transform),
+    // touchAction: "none",
+    transform: CSS.Translate.toString(transform),
     transition,
   };
   return (

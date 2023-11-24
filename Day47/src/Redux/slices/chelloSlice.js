@@ -2,9 +2,12 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { client } from "../../Utils/client";
 
 const initialState = {
-  dataChello: null,
+  dataChello: [],
+  colums: [],
+  tasks:[],
   apiKey: "",
   status: "lazy",
+  stutusData: "",
 };
 export const chelloSlice = createSlice({
   name: "chello",
@@ -24,11 +27,23 @@ export const chelloSlice = createSlice({
     });
     builder.addCase(getApikey.fulfilled, (state, action) => {
       state.apiKey = action.payload;
-      localStorage.setItem("apiKey", JSON.stringify(action.payload));
+      localStorage.setItem("apiKey", action.payload);
       state.status = "succes";
     });
     builder.addCase(getApikey.rejected, (state) => {
       state.status = "err";
+    });
+
+    builder.addCase(getData.pending, (state) => {
+      state.stutusData = "pending";
+    });
+    builder.addCase(getData.fulfilled, (state, action) => {
+      state.colums = action.payload?.columns;
+      state.tasks = action.payload?.tasks;
+      state.stutusData = "succes";
+    });
+    builder.addCase(getData.rejected, (state) => {
+      state.stutusData = "err";
     });
   },
 });
@@ -39,7 +54,7 @@ export const getApikey = createAsyncThunk("getApikey", async (dataEmail) => {
   return data.data.apiKey;
 });
 
-// export const getData = createAsyncThunk("getData", async (api) => {
-//   console.log(data);
-//   return data;
-// });
+export const getData = createAsyncThunk("getData", async (api) => {
+  const { data } = await client.get(`/tasks`, null, api);
+  return data.data;
+});
