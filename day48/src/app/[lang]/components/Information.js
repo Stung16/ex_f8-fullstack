@@ -3,7 +3,7 @@ import React from "react";
 const Information = () => {
   return (
     <div className=" w-60">
-      <div className="bg-white shadow rounded-lg p-6">
+      <div className="border shadow rounded-lg p-6">
         <div className="flex flex-col items-center">
           <img
             src="https://scontent.fhan14-2.fna.fbcdn.net/v/t39.30808-6/405363821_1051094602759129_2432277324655653237_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=ReAwke6-HIMAX9qXjlJ&_nc_ht=scontent.fhan14-2.fna&oh=00_AfBqxXb9gQz91ZtcBWix2cO4j2eFoA-xRV2libqE5Cnl_w&oe=657650CE"

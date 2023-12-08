@@ -1,12 +1,16 @@
-"use client"
-import React from 'react'
-import { Provider } from 'react-redux'
-import { store } from './store'
+"use client";
+import React from "react";
+import {NextUIProvider} from '@nextui-org/react'
+import {ThemeProvider as NextThemesProvider} from "next-themes";
 
-const Providers = ({children}) => {
+const Providers = ({ children }) => {
   return (
-    <Provider store={store}>{children}</Provider>
-  )
-}
+    <NextUIProvider>
+      <NextThemesProvider attribute="class" defaultTheme="light">
+        {children}
+      </NextThemesProvider>
+    </NextUIProvider>
+  );
+};
 
-export default Providers
+export default Providers;

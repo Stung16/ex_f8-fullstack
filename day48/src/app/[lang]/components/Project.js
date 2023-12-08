@@ -2,7 +2,7 @@ import React from "react";
 
 const Project = ({ data }) => {
   return (
-    <div className="bg-white shadow rounded-lg p-6">
+    <div className="border shadow rounded-lg p-6">
       <h3 className="heading text-center font-bold">{data.title}</h3>
       <ul>
         <li>
