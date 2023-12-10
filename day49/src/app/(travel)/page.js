@@ -1,7 +1,6 @@
 import React from 'react'
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Slider from './components/Slider';
 import FormTravel from './components/FormTravel';
 import Sale from './components/Sale';
 import SpecialOffers from './components/SpecialOffers';
@@ -16,7 +15,6 @@ const page = () => {
   return (
     <div className='overflow-y-hidden'>
       <Header />
-      <Slider />
       <FormTravel />
       <Sale />
       <SpecialOffers />

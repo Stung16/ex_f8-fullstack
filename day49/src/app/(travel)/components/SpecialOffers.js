@@ -1,4 +1,3 @@
-"use client"
 import { DATA_API, DATA_IMG } from "@/Utils/config";
 import React from "react";
 import Image from "next/image";
