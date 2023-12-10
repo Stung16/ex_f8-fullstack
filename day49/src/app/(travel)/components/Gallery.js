@@ -1,3 +1,4 @@
+"use server"
 import { DATA_API, DATA_IMG } from "@/Utils/config";
 import React from "react";
 
@@ -24,9 +25,12 @@ const Gallery = async () => {
       <div className=" mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-5 gap-x-5 mt-10 mb-5">
         {data.map((item, index) => {
           return (
-            <div key={index} className="w-full h-60 bg-white shadow-md rounded-xl overflow-hidden  hover:shadow-xl">
+            <div
+              key={index}
+              className="w-full h-60 bg-white shadow-md rounded-xl overflow-hidden  hover:shadow-xl"
+            >
               <img
-              className="bg-cover hover:scale-125 duration-500"
+                className="bg-cover hover:scale-125 duration-500"
                 src={`${DATA_IMG}${item.galleryBox[1].src}`}
                 alt=""
               />

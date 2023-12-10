@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 
 const Sale = () => {
@@ -18,7 +19,7 @@ const Sale = () => {
           alt=""
         />
         <div className="p-8 flex flex-col gap-y-3">
-          <h3 className="text-amber-500 text-xl"><i class="fa-solid fa-location-dot"></i> HaWaii</h3>
+          <h3 className="text-amber-500 text-xl"><i className="fa-solid fa-location-dot"></i> HaWaii</h3>
           <p className="text-base">Hòn Ngọc Của Thái Bình Dương</p>
           <p className="text-base">Ưu Đãi 50.000.000 Cho 5người/7ngày</p>
           <a className="bg-amber-600 w-max px-4 text-white py-2" href="#">Đặt Ngay</a>

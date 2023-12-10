@@ -44,12 +44,8 @@ const FormTravel = () => {
           >
             Tôi Muốn Đến :
           </label>
-          <select
-            className="block text-amber-500 w-full text-xl"
-          >
-            <option value="DEFAULT" disabled>
-              Choose a address ...
-            </option>
+          <select className="block text-amber-500 w-full text-xl">
+            <option value="Bolivia">VietNam</option>
             <option value="American Samoa">American Samoa</option>
             <option value="Angola">Angola</option>
             <option value="Argentina">Argentina</option>
@@ -63,9 +59,6 @@ const FormTravel = () => {
             <option value="Benin">Benin</option>
             <option value="Bermuda">Bermuda</option>
             <option value="Bhutan">Bhutan</option>
-            <option value="Bolivia" selected>
-              VietNam
-            </option>
             <option value="Bouvet Island">Bouvet Island</option>
           </select>
           <input
@@ -108,7 +101,9 @@ const FormTravel = () => {
             type="date"
             id="f"
           />
-          <button className="bg-amber-500 w-max px-4 py-2 text-white hover:bg-yellow-900 rounded-md">Tìm Ngay</button>
+          <button className="bg-amber-500 w-max px-4 py-2 text-white hover:bg-yellow-900 rounded-md">
+            Tìm Ngay
+          </button>
         </form>
       </div>
     </section>
