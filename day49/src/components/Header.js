@@ -5,7 +5,7 @@ import Link from "next/link";
 const Header = () => {
   return (
     <header>
-      <nav className="bg-white border-gray-200 px-4 lg:px-6 py-4 dark:bg-slate-700 opacity-80 fixed z-50 right-0 left-0">
+      <nav className="bg-white border-gray-200 px-4 lg:px-6 py-4 dark:bg-slate-700 opacity-80 fixed z-50 right-0 left-0 top-0">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl text-xl text-white">
           <Link href="/" className="flex items-center font-bold text-2xl">
             <span className="text-amber-500">S</span>TRAVEL
@@ -24,7 +24,7 @@ const Header = () => {
                 <a href="#services">Dịch Vụ</a>
             </li>
             <li>
-                <Link href="/">Thư Viện</Link>
+                <a href="#gallery">Thư Viện</a>
             </li>
             <li>
                 <Link href="/">Đánh Giá</Link>
