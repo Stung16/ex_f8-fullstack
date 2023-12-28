@@ -3,7 +3,7 @@ import { ReactFlowProvider } from 'reactflow';
 import Mindmap from "./Mindmap";
 
 
-function Flow({ id }) {
+function Flow() {
   return (
     <ReactFlowProvider>
       <Mindmap />
