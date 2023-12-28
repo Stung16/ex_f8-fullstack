@@ -14,7 +14,7 @@ const Price = () => {
               The right price for you, whoeveryou are
             </h1>
             <p className="text-xl sm:text-2xl font-light text-gray-500 px-10 py-6">
-              Lorem ipsum has been the industry's standard dummy text ever since
+              Lorem ipsum has been the industrys standard dummy text ever since
               , when an unknown printer took a galley of type and scrambled.
             </p>
           </div>

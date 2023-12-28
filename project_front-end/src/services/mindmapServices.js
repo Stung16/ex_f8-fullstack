@@ -98,5 +98,5 @@ export const delMindmap = async (id) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_MY_MINDMAP}/${id}`, {
     method: "DELETE",
   });
-  console.log(response);
+  // console.log(response);
 };

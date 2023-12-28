@@ -11,7 +11,7 @@ const PostData = async (data) => {
     },
     body: JSON.stringify(data),
   });
-  console.log(response);
+  // console.log(response);
 };
 
 const Header = () => {
