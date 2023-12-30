@@ -1,58 +1,51 @@
 "use client";
-import { getSession } from "@auth0/nextjs-auth0/edge";
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
-import { useUser } from "@auth0/nextjs-auth0/client";
-import {
-  GetMindMap,
-  getidMindmap,
-  saveMindmap,
-} from "@/services/mindmapServices";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { GetMindMap, saveMindmap } from "@/services/mindmapServices";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import useSWR from "swr";
+import { useRouter } from "next/navigation";
 import ReactFlow, {
   useNodesState,
   useEdgesState,
   addEdge,
   useReactFlow,
-  ReactFlowProvider,
   Background,
   Controls,
   MiniMap,
-  Panel,
 } from "reactflow";
 import "reactflow/dist/style.css";
-
-// import "./index.css";
 
 import TextUpdaterNode from "../items/TextUpdaterNode";
 
 import "../items/textUpdater.css";
+import Loading from "@/components/Loading/Loading";
+import NotFound from "@/app/not-found";
+import Board_share from "../items/Board_share";
 
 const initialNodes = [];
-let idmap = getidMindmap();
 const nodeTypes = { textUpdater: TextUpdaterNode };
 
-const Mindmap = () => {
-  // console.log(userId);
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+const Mindmap = ({ idmap, sub }) => {
   const reactFlowWrapper = useRef(null);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const { screenToFlowPosition } = useReactFlow();
   const [check, setCheck] = useState(false);
+  const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
   // const [selectedId, setSelectedId] = useState(false);
-  const [title, setTitle] = useState();
-  const [desc, setDesc] = useState();
+  const [title, setTitle] = useState("MindMap chưa có tên");
+  const [desc, setDesc] = useState("Chưa có mô tả");
+  const router = useRouter();
   const handleChangeTitle = (evt) => {
     if (evt.target.value) {
+      document.title = evt.target.value;
       setTitle(evt.target.value);
+    } else {
+      document.title = "Không có tiêu đề mindmap";
     }
   };
   const handleChangeDesc = (evt) => {
@@ -71,29 +64,42 @@ const Mindmap = () => {
         return "#ff0072";
     }
   }
-
+  const { data } = useSWR(
+    `${process.env.NEXT_PUBLIC_API_MY_MINDMAP}/${idmap}`,
+    fetcher
+  );
+  if (data) {
+    if (data?.id !== idmap) {
+      console.log(data?.id);
+      console.log(idmap);
+      router.push("/not-found");
+      // return <NotFound />;
+    }
+  }
   let id = 0;
   if (nodes?.length) {
     const ids = nodes.map((a) => a.id);
     id = Math.max(...ids) + 1;
   }
-  // let idd = 1;
+  const handleSetShow = () => {
+    setShow(true);
+  };
 
   const getId = () => `${id++}`;
 
-  const addNode = () => {
-    setNodes((e) =>
-      e.concat({
-        id: (e.length + 1).toString(),
-        data: { label: `${name}` },
-        position: {
-          x: Math.random() * 200,
-          y: Math.random() * 200,
-        },
-        style: { border: "10px solid #9999" },
-      })
-    );
-  };
+  // const addNode = () => {
+  //   setNodes((e) =>
+  //     e.concat({
+  //       id: (e.length + 1).toString(),
+  //       data: { label: `${name}` },
+  //       position: {
+  //         x: Math.random() * 200,
+  //         y: Math.random() * 200,
+  //       },
+  //       style: { border: "10px solid #9999" },
+  //     })
+  //   );
+  // };
   const onConnect = useCallback((params) => {
     // reset the start node on connections
     connectingNodeId.current = null;
@@ -134,17 +140,23 @@ const Mindmap = () => {
     },
     [screenToFlowPosition, getId, setEdges, setNodes]
   );
-  const { user } = useUser();
-  const [titleData, setTitleData] = useState("MindMap chưa có tên");
-  const [descData, setDescData] = useState("Chưa có mô tả");
-  const loadMap = async (sub = user?.sub) => {
+
+  const loadMap = async () => {
     const data = await GetMindMap(sub, idmap);
     if (data[0]?.nodes?.length > 0) {
+      setLoading(true);
       setNodes(() => data[0]?.nodes);
       setEdges(() => data[0]?.edges);
-      setDescData(() => data[0]?.seo?.desdescription);
-      setTitleData(() => data[0]?.seo?.title);
+      if (data[0]?.seo?.desdescription) {
+        setDesc(() => data[0]?.seo?.desdescription);
+      }
+      if (data[0]?.seo?.title) {
+        setTitle(() => data[0]?.seo?.title);
+      }
+      // document.title = titleData;
+      setLoading(false);
     } else {
+      setLoading(true);
       setNodes(() => [
         {
           id: "0",
@@ -154,22 +166,25 @@ const Mindmap = () => {
           type: "textUpdater",
         },
       ]);
+      setLoading(false);
     }
   };
   useEffect(() => {
+    setLoading(true);
     loadMap();
-  }, [user]);
+  }, [data]);
 
   return (
     <div>
       <div className="text-start px-28 flex justify-between py-4 shadow">
         <div className="">
+          {/* {console.log(descData,titleData)} */}
           <input
             className="text-3xl md:text-4xl font-medium my-2 w-max block"
             type="text"
             onChange={handleChangeTitle}
             readOnly={check ? false : true}
-            defaultValue={titleData}
+            defaultValue={title}
             // value={}
             onDoubleClick={() => {
               setCheck(true);
@@ -188,7 +203,7 @@ const Mindmap = () => {
             type="text"
             onChange={handleChangeDesc}
             readOnly={check ? false : true}
-            defaultValue={descData}
+            defaultValue={desc}
             onDoubleClick={() => {
               setCheck(true);
             }}
@@ -211,9 +226,8 @@ const Mindmap = () => {
             >
               <i className="fa-solid fa-save"></i>
               <span
-                onClick={async () => {
+                onClick={() => {
                   saveMindmap(
-                    user?.sub,
                     {
                       nodes: nodes,
                       edges: edges,
@@ -236,14 +250,16 @@ const Mindmap = () => {
               rel="noopener"
               href="https://www.linkedin.com/shareArticle?mini=true&amp;url=&amp;title=&amp;summary=&amp;source="
               aria-label="Share on Linkedin"
+              onClick={handleSetShow}
             >
               <i className="fa-solid fa-share"></i>
               <span className="ml-2">Chia sẻ</span>
             </button>
+            {show && <Board_share data={data} setShow={setShow} id={idmap} />}
           </div>
         </div>
       </div>
-
+      {loading && <Loading />}
       <div
         className="wrapper"
         style={{ width: "100%", height: "520px" }}

@@ -1,50 +1,43 @@
 "use client";
-import { useUser } from "@auth0/nextjs-auth0/client";
-import { getListData } from "@/services/mindmapServices";
-import { PostData } from "@/services/mindmapServices";
-import { getTime } from "@/services/mindmapServices";
-import { makeid } from "@/services/mindmapServices";
-import { GetMindMap } from "@/services/mindmapServices";
+import {
+  makeid,
+  getTime,
+  PostData,
+  getListData,
+} from "@/services/mindmapServices";
+import { useRouter } from "next/navigation";
 
 import React from "react";
 
-const Create = () => {
-  const { user } = useUser();
+const Create = ({ subid }) => {
+  const router = useRouter();
   let listMyMindMap = {};
   let idMindMaplocal = makeid(30);
+  const createMindmap = async () => {
+    listMyMindMap = {
+      id:idMindMaplocal,
+      userId: subid,
+      create: getTime(),
+      title: `${process.env.NEXT_PUBLIC_TITLE_DEFAULT}`,
+      desc: `${process.env.NEXT_PUBLIC_DESC_DEFAULT}`,
+      nodes: [],
+      edges: [],
+      seo: {},
+      img_seo:
+        "https://static.vecteezy.com/ti/gratis-vector/p1/3343411-mindmap-flow-concept-vector.jpg",
+      isPublic: false,
+    };
+    PostData(listMyMindMap);
+    router.push(`/my-mindmap/${idMindMaplocal}`);
+    router.refresh();
+  };
   return (
-    <a
-      href={`/my-mindmap/${idMindMaplocal}`}
-      // href="#"
-      onClick={async () => {
-        let data = await getListData(user?.sub);
-        if (data.length <= 0) {
-          listMyMindMap.userId = user?.sub;
-          listMyMindMap.create = getTime();
-          listMyMindMap.title = `${process.env.NEXT_PUBLIC_TITLE_DEFAULT}`;
-          listMyMindMap.desc = `${process.env.NEXT_PUBLIC_DESC_DEFAULT}`;
-          listMyMindMap.idMindMap = idMindMaplocal;
-          listMyMindMap.nodes = [];
-          listMyMindMap.edges = [];
-          listMyMindMap.seo = {}
-          PostData(listMyMindMap);
-        } else {
-          listMyMindMap.userId = user?.sub;
-          listMyMindMap.create = getTime();
-          listMyMindMap.title = `${process.env.NEXT_PUBLIC_TITLE_DEFAULT}`;
-          listMyMindMap.desc = `${process.env.NEXT_PUBLIC_DESC_DEFAULT}`;
-          listMyMindMap.idMindMap = idMindMaplocal;
-          listMyMindMap.nodes = [];
-          listMyMindMap.edges = [];
-          listMyMindMap.seo = {}
-
-          PostData(listMyMindMap);
-        }
-      }}
+    <button
+      onClick={createMindmap}
       className="rounded-lg px-4 py-2 bg-blue-500 text-blue-100 hover:bg-blue-600 duration-300"
     >
       Thêm mới
-    </a>
+    </button>
   );
 };
 

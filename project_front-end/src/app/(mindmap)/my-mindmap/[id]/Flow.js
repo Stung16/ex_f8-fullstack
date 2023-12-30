@@ -1,12 +1,11 @@
-'use client';
-import { ReactFlowProvider } from 'reactflow';
+"use client";
+import { ReactFlowProvider } from "reactflow";
 import Mindmap from "./Mindmap";
 
-
-function Flow() {
+function Flow({idmap,subid}) {
   return (
     <ReactFlowProvider>
-      <Mindmap />
+      <Mindmap idmap={idmap} sub={subid} />
     </ReactFlowProvider>
   );
 }

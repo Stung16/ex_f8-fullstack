@@ -19,22 +19,12 @@ export const PostData = async (data) => {
     body: JSON.stringify(data),
   });
 };
-export const getidMindmap = () => {
-  if (typeof window !== "undefined") {
-    let idMindMap = window?.location?.pathname?.slice(-30);
-    return idMindMap;
-  }
-};
+
 export const GetMindMap = async (userId, idmap) => {
   let data = await getListData(userId);
-  data = data?.filter((item) => item?.idMindMap === idmap);
-  return data;
-};
-
-export const GetMindMapp = async (idmap) => {
-  const session = await getSession();
-  let data = await getListData(session?.user?.sub);
-  data = data?.filter((item) => item?.idMindMap === idmap);
+  data = data.filter((e) => {
+    return e.id === idmap;
+  });
   return data;
 };
 
@@ -79,24 +69,28 @@ export const makeid = (length) => {
   return result;
 };
 
-export const saveMindmap = async (subid, data, idmap) => {
-  let dataMindmap = await GetMindMap(subid, idmap);
-  let idData = dataMindmap[0]?.id;
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_MY_MINDMAP}/${idData}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
+export const saveMindmap = async (data, idmap) => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_MY_MINDMAP}/${idmap}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  );
   if (response.status === 200) {
     toast.success("Lưu thành công");
   }
 };
 
 export const delMindmap = async (id) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_MY_MINDMAP}/${id}`, {
-    method: "DELETE",
-  });
-  // console.log(response);
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_MY_MINDMAP}/${id}`,
+    {
+      method: "DELETE",
+    }
+  );
+  return response;
 };
