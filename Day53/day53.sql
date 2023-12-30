@@ -78,6 +78,37 @@ INSERT INTO order_detail (user_id, products_id, orders_id, products_name, user_n
   (1, 5, 5, 'game', 'Duy Tung', 2, 4);
 
 
-select user.name,user.email,user.phone, orders.*,order_detail.price,order_detail.amount
-from user
-join 
+-- Hiển thị danh sách đơn hàng
+
+select 
+	users.name as "Tên khách hàng",
+	users.email as "Email khách hàng",
+	users.phone as "Số điện thoại khách hàng",
+	sum(order_detail.amount) as "Tổng số lượng sản phẩm",
+	sum(order_detail.amount * order_detail.price) as "Tổng tiền đơn hàng",
+	orders.status as "Trạng thái đơn hàng",
+	orders.created_at as "Thời gian đặt hàng"
+from users
+join order_detail on users.id = order_detail.user_id
+join orders on order_detail.orders_id = orders.id  
+group by orders.id, users.id
+
+
+-- Hiển thị chi tiết đơn hàng
+
+select
+	users.name as "Tên khách hàng",
+	users.email as "Email khách hàng",
+	users.phone as "Số điện thoại khách hàng",
+	products.name as "Tên sản phẩm",
+	products.id as "Mã sản phẩm",
+	products.price as "Giá",
+	order_detail.amount as "Số lượng",
+	(products.price * order_detail.amount) as "Tổng tiền từng sản phẩm",
+	orders.status as "Trạng thái đơn hàng",
+	orders.created_at as "Thời gian đặt hàng",
+	orders.updated_at as "Thời gian cập nhật cuối cùng"
+from users
+join order_detail on users.id = order_detail.user_id
+join products on order_detail.products_id = products.id
+join orders on order_detail.orders_id = orders.id
