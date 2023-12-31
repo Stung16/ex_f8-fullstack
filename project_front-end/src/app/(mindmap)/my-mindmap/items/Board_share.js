@@ -1,6 +1,6 @@
 "use client";
 import { saveMindmap } from "@/services/mindmapServices";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { toast } from "react-toastify";
 
 const Board_share = ({ data, setShow, id }) => {
