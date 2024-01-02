@@ -1,3 +1,5 @@
+CREATE DATABASE database_03_kieuduytung;
+
 CREATE TABLE KHACH_HANG (
   id varchar(50)  PRIMARY KEY,
   name varchar(50) NOT NULL,
