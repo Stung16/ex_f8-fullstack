@@ -1,0 +1,31 @@
+<h1 class="text-center">Đăng nhập</h1>
+<%- msg.length ? `
+<div class="alert alert-danger" role="alert">${msg[0]}</div>
+`: '' %>
+<form action="" method="post">
+  <div class="mb-3">
+    <label for="">Tên đăng nhập hoặc Email</label>
+    <input
+      type="text"
+      name="email"
+      value="<%= data_Old?.email %>"
+      class="form-control mt-1"
+      placeholder="Email..."
+    />
+    <p class="text-danger mt-1"><%= req.errors.email %></p>
+  </div>
+  <div class="mb-3">
+    <label for="">Mật khẩu</label>
+    <input
+      type="password"
+      name="password"
+      value="<%= data_Old?.password %>"
+      class="form-control mt-1"
+      placeholder="Nhập mật khẩu..."
+    />
+    <p class="text-danger mt-1"><%= req.errors.password %></p>
+  </div>
+
+  <button type="submit" class="btn btn-primary text-white">Đăng nhập</button>
+  <a href="/register" class="btn btn-info text-white">Đăng ký</a>
+</form>
