@@ -1,25 +1,34 @@
 const { object, string, number } = require("yup");
 const bcrypt = require("bcrypt");
+const crypto = require("crypto");
 const model = require("../models/index");
+const moment = require("moment");
 const { Op } = require("sequelize");
 const User = model.User;
+const Device = model.Device;
 module.exports = {
   index: async (req, res) => {
-    const login = req.session.login;
-    if (!login) {
+    const token = req.cookies.token;
+    const success = req.flash("success");
+    if (!token) {
       res.redirect("/login");
     }
-    const infor = req.session.username;
-    res.render("index", { infor });
+    const device = await Device.findOne({
+      where: { token: token },
+      attributes: ["user_id", "status"],
+    });
+    if (!device.status) {
+      return res.redirect("/login");
+    }
+    const user = await User.findByPk(device?.user_id);
+    res.render("index", { user, success });
   },
+
   login: async (req, res) => {
     const msg = req.flash("msg");
     const dataOld = req.flash("dataOld");
-    const login = req.session.login;
-   
-
-    // console.log(emaillogin);
-    if (!login) {
+    const token = req.cookies.tokenc;
+    if (!token) {
       return res.render("login/index", {
         req,
         msg,
@@ -31,6 +40,7 @@ module.exports = {
   },
   handleLogin: async (req, res) => {
     const { email, password } = req.body;
+    const userAgent = req.headers["user-agent"];
     const body = await req.validate(req.body, {
       email: string()
         .required("Email không được để trống")
@@ -38,35 +48,28 @@ module.exports = {
       password: string().min(6, "Mật khẩu ít nhất có 6 ký tự"),
     });
     if (body) {
-      let filters = {};
-      filters = [
-        {
-          email: {
-            [Op.iLike]: `%${email}%`,
-          },
-        },
-      ];
-      const user = await User.findAll({
-        where: filters,
-      });
-      const status = user[0]?.status;
-      if (
-        user.length &&
-        bcrypt.compareSync(password, user[0].password) &&
-        status
-      ) {
-        req.session.username = user[0].name;
-        req.session.login = true;
+      const user = await User.findOne({ where: { email } });
+      const status = user?.status;
+      if (user && bcrypt.compareSync(password, user.password) && status) {
+        const token = crypto.randomBytes(50).toString("hex");
+        const device = await Device.create({
+          browser: userAgent,
+          token,
+          status: true,
+          user_id: user.id,
+          login_time: moment().format("YYYY-MM-DD HH:mm:ss"),
+          login_last: moment().format("YYYY-MM-DD HH:mm:ss"),
+        });
+        res.setHeader(
+          "Set-Cookie",
+          `token=${token};path=/;max-age=86400;HttpOnly`
+        );
         return res.redirect("/");
       } else {
-        if (
-          !user.length ||
-          !bcrypt.compareSync(password, user[0].password) ||
-          !status
-        ) {
+        if (!user || !bcrypt.compareSync(password, user.password) || !status) {
           req.flash("msg", "email hoặc mật khẩu không đúng!");
         }
-        req.session.login = false;
+
         req.flash("dataOld", req.body);
       }
     }
@@ -76,6 +79,7 @@ module.exports = {
   register: (req, res) => {
     const msg = req.flash("msg");
     const old = req.flash("old");
+
     res.render("register/index", { old: old[0], msg, req });
   },
   handleRegister: async (req, res) => {
@@ -128,7 +132,6 @@ module.exports = {
     }
   },
   logout: (req, res) => {
-    req.session.login = false;
     res.redirect("/login");
   },
 };
