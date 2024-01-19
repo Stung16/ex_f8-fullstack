@@ -2,8 +2,10 @@ const model = require("../models/index");
 const { object, string, number } = require("yup");
 const moment = require("moment");
 const bcrypt = require("bcrypt");
+const sendMail = require("../utils/mail");
 const { Op } = require("sequelize");
 const User = model.User;
+const Email = model.Email;
 const Device = model.Device;
 
 module.exports = {
@@ -118,5 +120,47 @@ module.exports = {
     const { id } = req.params;
     const status = await Device.update({ status: false }, { where: { id } });
     return res.redirect("/");
+  },
+  mail: (req, res) => {
+    console.log(req.errors);
+    return res.render("account/mail");
+  },
+  handleSendmail: async (req, res) => {
+    const { to, title, message } = req.body;
+    const { id } = req.params;
+    const body = await req.validate(req.body, {
+      to: string().required("trường này không được để trống!"),
+      title: string().required("trường này không được để trống!"),
+      message: string().required("trường này không được để trống!"),
+    });
+    if (body) {
+      const email = await Email.create({
+        status: false,
+        user_id: id,
+        to: to,
+        title: title,
+        message: message,
+        createdAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+        updatedAt: moment().format("YYYY-MM-DD HH:mm:ss"),
+      });
+      const infor = await sendMail(to, title, message);
+      req.flash("body", req.body);
+      req.flash(
+        "success",
+        "Gửi email thành công! muốn biết thêm thông tin vui lòng kiểm tra lịch sử!!!"
+      );
+      return res.redirect("/");
+
+      // res.json(infor);
+    }
+    req.flash("body", req.body);
+    res.redirect(`/account/send-mail/${id}`);
+  },
+  historyMail: async (req, res) => {
+    const { id } = req.params;
+    const emails = await Email.findAll({
+      where: { user_id: id },
+    });
+    res.render("account/history",{emails,moment});
   },
 };

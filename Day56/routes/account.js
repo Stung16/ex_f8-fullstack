@@ -10,7 +10,9 @@ router.get('/pass/:id',accountController.editPass);
 router.post('/pass/:id',accountController.handleEditPass);
 router.get('/checkDevice/:id',accountController.checkDevice);
 router.post('/checkDevice/:id',accountController.handleCheckDevice);
-
+router.get('/send-mail/:id',accountController.mail);
+router.post('/send-mail/:id',accountController.handleSendmail);
+router.get('/history-mail/:id',accountController.historyMail);
 
 
 module.exports = router;

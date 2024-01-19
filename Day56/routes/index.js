@@ -10,9 +10,9 @@ router.post("/login", authController.handleLogin);
 router.get("/register", authController.register);
 router.post("/register", authController.handleRegister);
 router.get("/logout", authController.logout);
-router.get("/   ", async (req, res) => {
-  const infor = await sendMail("nguyenntrung029@gmail.com", "hello f8", "hi");
-  res.json(infor)
-});
+// router.get("/send-mail", async (req, res) => {
+//   const infor = await sendMail("nguyenntrung029@gmail.com", "hello f8", "hi");
+//   res.json(infor)
+// });
 
 module.exports = router;
