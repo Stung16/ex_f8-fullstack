@@ -27,7 +27,7 @@ module.exports = {
   login: async (req, res) => {
     const msg = req.flash("msg");
     const dataOld = req.flash("dataOld");
-    const token = req.cookies.tokenc;
+    const token = req.cookies.token;
     if (!token) {
       return res.render("login/index", {
         req,
@@ -131,7 +131,17 @@ module.exports = {
       return res.redirect("/register");
     }
   },
-  logout: (req, res) => {
+  logout: async(req, res) => {
+    const token = req.cookies.token
+    await Device.update(
+      {
+        status: false,
+      },
+      {
+        where: {token}
+      }
+      )
+    res.clearCookie('token');
     res.redirect("/login");
   },
 };

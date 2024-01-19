@@ -5,7 +5,6 @@ const bcrypt = require("bcrypt");
 const { Op } = require("sequelize");
 const User = model.User;
 const Device = model.Device;
-const { decryptPassword } = require("../utils/fn");
 
 module.exports = {
   edit: async (req, res) => {
