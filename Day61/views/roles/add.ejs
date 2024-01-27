@@ -1,0 +1,111 @@
+<h1>Thêm role</h1>
+<%- errRole?.length ? `
+      <div class="alert alert-danger" role="alert">${errRole[0]}</div>
+      `: '' %>
+<form action="" method="post">
+  <div class="mb-3">
+    <label for="">Tên</label>
+    <input
+      type="text"
+      name="name"
+      class="form-control"
+      placeholder="Tên Role..."
+      required
+    />
+  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th width="10%">Module</th>
+        <th colspan="4">Quyền</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Quản lý User</td>
+        <td class="d-flex align-item-center justify-content-between">
+          <label for="user_read">
+            <input
+              type="checkbox"
+              id="user_read"
+              name="permissions"
+              value="user_read"
+            />
+            Xem
+          </label>
+          <label for="user_create">
+            <input
+              type="checkbox"
+              id="user_create"
+              name="permissions"
+              value="user_create"
+            />
+            Thêm
+          </label>
+          <label for="user_update">
+            <input
+              type="checkbox"
+              id="user_update"
+              name="permissions"
+              value="user_create"
+            />
+            Sửa
+          </label>
+          <label for="user_delete">
+            <input
+              type="checkbox"
+              id="user_delete"
+              name="permissions"
+              value="user_delete"
+            />
+            Xóa
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td>Quản lý Roles</td>
+        <td class="d-flex align-item-center justify-content-between">
+          <label for="role_read">
+            <input
+              type="checkbox"
+              id="role_read"
+              name="permissions"
+              value="role_read"
+            />
+            Xem
+          </label>
+          <label for="role_create">
+            <input
+              type="checkbox"
+              id="role_create"
+              name="permissions"
+              value="role_create"
+            />
+            Thêm
+          </label>
+          <label for="role_update">
+            <input
+              type="checkbox"
+              id="role_update"
+              name="permissions"
+              value="role_update"
+            />
+            Sửa
+          </label>
+          <label for="role_delete">
+            <input
+              type="checkbox"
+              id="role_delete"
+              name="permissions"
+              value="role_delete"
+            />
+            Xóa
+          </label>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="btn btn-primary">Lưu</button>
+  <a href="/roles" class="btn btn-danger">Hủy</a>
+</form>

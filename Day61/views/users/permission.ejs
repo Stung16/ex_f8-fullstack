@@ -1,0 +1,25 @@
+<h1>Phân quyền</h1>
+<form action="" method="post">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th width="5%">
+          <input type="checkbox" />
+        </th>
+        <th width="90%">Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% roles.forEach((role) => { %>
+      <tr>
+        <td width="5%">
+          <input id="<%= role.name %>" type="checkbox" />
+        </td>
+        <td><label for="<%= role.name %>"> <%= role.name %> </label></td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <button class="btn btn-primary">Lưu thay đổi</button>
+  <a href="/users" class="btn btn-danger">Hủy</a>
+</form>
