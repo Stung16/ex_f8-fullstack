@@ -10,10 +10,12 @@
       </tr>
     </thead>
     <tbody>
-      <% roles.forEach((role) => { %>
+      <% roles.forEach((role) => { const isChechked = user.roles.find(item =>
+      item.id === role.id) %>
       <tr>
         <td width="5%">
-          <input id="<%= role.name %>" type="checkbox" />
+          <input id="<%= role.name %>" name="roles" value="<%= role.id %> "
+          type="checkbox" <%= isChechked ? "checked" : "" %> />
         </td>
         <td><label for="<%= role.name %>"> <%= role.name %> </label></td>
       </tr>

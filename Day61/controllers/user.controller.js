@@ -3,44 +3,69 @@ const model = require("../models/index");
 const User = model.User;
 const Phone = model.Phone;
 const Post = model.Post;
-const Roles = model.Roles;
+const Role = model.Role;
 const Course = model.Course;
 const { Op } = require("sequelize");
 const { use } = require("../routes");
 module.exports = {
   index: async (req, res) => {
-    const { page = 1 } = req.query;
+    const { status, keyword } = req.query;
+    const filters = {};
+    if (status === "active" || status === "inactive") {
+      filters.status = status === "active";
+    }
+    if (keyword) {
+      filters[Op.or] = [
+        {
+          name: {
+            [Op.iLike]: `%${keyword}%`,
+          },
+        },
+        {
+          email: {
+            [Op.iLike]: `%${keyword}%`,
+          },
+        },
+      ];
+    }
+    let { page = 1 } = req.query;
     if (!+page) {
       page = 1;
     }
-    const limit = 5;
+    const limit = 3;
     const offset = (page - 1) * limit;
     let { rows: users, count } = await User.findAndCountAll({
       order: [
         ["id", "DESC"],
         ["created_at", "ASC"],
       ],
+      where: filters,
       limit,
       offset,
+      // include: {
+      //   model: Phone,
+      //   as: "phone",
+      // },
     });
     const totalPage = Math.ceil(count / limit);
+
     /*
-      -lấy đưuocj page hiện tại(req.query)
-      -xác định limit(confing)
-      -offset(page - 1) * limit
-      -tính tổng sô bản ghi
-      -tính tổng số trang: tổng số bản ghi / limit --> làm tròn lên
-      -hiển thị số trang: sử dụng paginate của boostrap
-      */
-    // for(let i =0;i < users.length;i++){
-    //   const phone = await users[i].getPhone()
-    //   users[i].phone = phone?.phone
+    - Lấy được page hiện tại: req.query
+    - Xác định limit: config
+    - Tính offset: (page - 1) * limit
+    - Tính tổng số bản ghi
+    - Tính tổng số trang: Tổng số bản ghi / limit --> Làm tròn lên
+    - Hiển thị số trang: Sử dụng paginate của bootstrap
+    */
+    // for (let user of users) {
+    //   const phone = await user.getPhone();
+    //   user.dienthoai = phone?.phone;
     // }
 
-    res.render("users/index", { users, moment, page, totalPage });
+    res.render("users/index", { users, moment, page, totalPage ,req});
   },
   add: async (req, res) => {
-    res.render("users/add");
+    res.render("users/add",{req});
   },
   handleAdd: async (req, res) => {
     const body = req.body;
@@ -61,7 +86,7 @@ module.exports = {
       }
       // console.log(await user.getPhone());
       // const user2 = await model.Phone.getUser()
-      res.render("users/edit", { user });
+      res.render("users/edit", { user,req });
     } catch (e) {
       return next(e);
     }
@@ -88,12 +113,48 @@ module.exports = {
   },
 
   permission: async (req, res) => {
-    const roles = await Roles.findAll({
+    const { id } = req.params;
+    const roles = await Role.findAll({
       order: [["id", "desc"]],
     });
-    res.render("users/permission", { roles });
+    const user = await User.findByPk(id, {
+      include: {
+        model: Role,
+        as: "roles",
+      },
+    });
+    res.render("users/permission", { roles, user, id ,req});
   },
-  handlePermisstion: (req, res) => {},
+
+  handlePermission: async (req, res) => {
+    // let { roles } = req.body;
+    // const { id } = req.params;
+    // const user = await User.findByPk(id);
+    // roles = Array.isArray(roles) ? roles : [roles];
+    // if (roles.length && user) {
+    //   const rolesintern = await Promise.all(
+    //     roles.map((roleId) => Roles.findByPk(roleId))
+    //   );
+    //   await User.setRoless(rolesintern);
+    // }
+    // return res.redirect("/users/permission/" + id);
+
+    let { roles } = req.body;
+    const { id } = req.params;
+    const user = await User.findByPk(id);
+    if (!roles) {
+      roles = [];
+    }
+    roles = Array.isArray(roles) ? roles : [roles];
+
+    if (roles.length) {
+      const rolesIntern = await Promise.all(
+        roles.map((roleId) => Role.findByPk(roleId))
+      );
+      await user.setRoles(rolesIntern);
+      res.redirect("/users/permission/" + id);
+    }
+  },
 
   delete: async (req, res) => {
     const { id } = req.params;

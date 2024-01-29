@@ -1,43 +1,41 @@
-<main class="py-5 container">
-  <div class="row">
-    <ul class="list-unstyled col col-lg-2">
-      <li><a href="/">Trang chủ</a></li>
-      <li><a href="/users">Quản lý người dùng</a></li>
-      <li><a href="/roles">Quản lý Role</a></li>
-    </ul>
-    <div class="col col-lg-9">
-      <h1>Quản lý ROLES</h1>
-      <%- success?.length ? `
-      <div class="alert alert-success" role="alert">${success[0]}</div>
-      `: '' %>
-      <a href="/roles/add" class="btn btn-primary">Thêm mới</a>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Tên</th>
-            <th width="5%">Sửa</th>
-            <th width="5%">Xóa</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% roles.forEach((role) => { %>
-          <tr>
-            <td><%= role.name %></td>
-            <td>
-              <a href="/roles/edit/<%= role.id %>" class="btn btn-warning">Sửa</a>
-            </td>
-            <td>
-              <form
-                action="/roles/delete/<%= role.id %>"
-                method="post"
-                onsubmit="return confirm('Bạn có chắc chắn xóa không?')"
-              >
-                <button type="submit" class="btn btn-danger">Xóa</button>
-              </form>
-            </td>
-          </tr>
-          <% }) %>
-        </tbody>
-    </div>
-  </div>
-</main>
+<h1>Quản lý vai trò</h1>
+<% if (req.can('roles.create')) { %>
+<a href="/roles/add" class="btn btn-primary mb-2">Thêm mới</a>
+<% } %>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th width="5%">STT</th>
+      <th>Tên</th>
+      <% if (req.can('roles.update')) { %>
+      <th width="5%">Sửa</th>
+      <% } %> <% if (req.can('roles.delete')) { %>
+      <th width="5%">Xóa</th>
+      <% } %>
+    </tr>
+  </thead>
+  <tbody>
+    <% roles.forEach((role, index) => { %>
+    <tr>
+      <td><%= index+1 %></td>
+      <td><%= role.name %></td>
+      <% if (req.can('roles.update')) { %>
+      <td>
+        <a href="/roles/edit/<%= role.id %>" class="btn btn-warning">Sửa</a>
+      </td>
+      <% } %> <% if (req.can('roles.delete')) { %>
+      <td>
+        <form
+          action="/roles/delete/<%= role.id %>"
+          method="post"
+          onsubmit="return confirm('Bạn chắc không?')"
+        >
+          <button class="btn btn-danger">Xóa</button>
+        </form>
+      </td>
+      <% } %>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>

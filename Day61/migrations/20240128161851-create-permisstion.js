@@ -9,13 +9,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      value: Sequelize.STRING,
-      created_at: {
+      value: {
+        type: Sequelize.STRING(100),
         allowNull: false,
+      },
+      created_at: {
         type: Sequelize.DATE,
       },
       updated_at: {
-        allowNull: false,
         type: Sequelize.DATE,
       },
     });

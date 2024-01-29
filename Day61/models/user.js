@@ -16,12 +16,16 @@ module.exports = (sequelize, DataTypes) => {
       //   foreignKey: "user_id",
       //   as: "posts",
       // });
-
-      // User.belongsToMany(models.Course, {
-      //   foreignKey: "user_id",
-      //   through: "users_courses",
-      //   as: "courses",
-      // });
+      User.belongsToMany(models.Role, {
+        foreignKey: "user_id",
+        through: "users_roles",
+        as: "roles",
+      });
+      User.belongsToMany(models.Permission, {
+        foreignKey: "user_id",
+        through: "users_permissions",
+        as: "permissions",
+      });
       // // define association here
     }
   }

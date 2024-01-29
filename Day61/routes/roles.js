@@ -1,12 +1,14 @@
 var express = require("express");
 var router = express.Router();
-const rolesController = require("../controllers/roles.controller");
+const rolesController = require("../controllers/role.controller");
+const permission = require("../middlewares/permission.middleware");
 
-router.get("/", rolesController.index);
-router.get("/add", rolesController.add);
-router.post("/add", rolesController.handleAdd);
-router.get("/edit/:id", rolesController.edit);
-router.post("/edit/:id", rolesController.handleEdit);
-router.post("/delete/:id", rolesController.handleDelete)
+
+router.get("/", permission("roles.read"), rolesController.index);
+router.get("/add", permission("roles.create"), rolesController.add);
+router.post("/add", permission("roles.create"), rolesController.handleAdd);
+router.get("/edit/:id", permission("roles.update"), rolesController.edit);  
+router.post("/edit/:id", permission("roles.update"), rolesController.handleEdit);
+router.post("/delete/:id", permission("roles.delete"), rolesController.delete)
 
 module.exports = router;

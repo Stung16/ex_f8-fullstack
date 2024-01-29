@@ -1,16 +1,5 @@
-<main class="py-5 container">
-  <div class="row">
-    <ul class="col list-unstyled">
-      <li><a href="/">Trang chủ</a></li>
-      <li><a href="/users">Quản lý người dùng</a></li>
-      <li><a href="/roles">Quản lý Role</a></li>
-    </ul>
-    <div class="col col-lg-9">
-      <h1>Chào mừng bạn đã quay trở lại với F8</h1>
-      <ul class="d-flex gap-2 list-unstyled">
-        <li>Chào bạn: <%= req.user.fullname %></li>
-        <li><a href="/auth/logout">Đăng xuất</a></li>
-      </ul>
-    </div>
-  </div>
-</main>
+<h1>Chào mừng bạn đã quay trở lại với F8</h1>
+<ul class="d-flex gap-2 list-unstyled">
+  <li>Chào bạn: <%= req.user.fullname %></li>
+  <li><a href="/auth/logout">Đăng xuất</a></li>
+</ul>

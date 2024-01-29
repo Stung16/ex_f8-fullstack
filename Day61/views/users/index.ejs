@@ -1,70 +1,92 @@
-<main class="py-5 container">
+<h1>Danh sách người dùng</h1>
+<% if (req.can('users.create')) { %>
+<a href="/users/add" class="btn btn-primary mb-3">Thêm mới</a>
+<% } %>
+<form action="" class="mb-3">
   <div class="row">
-    <ul class="list-unstyled col col-lg-2">
-      <li><a href="/">Trang chủ</a></li>
-      <li><a href="/users">Quản lý người dùng</a></li>
-      <li><a href="/roles">Quản lý Role</a></li>
-    </ul>
-    <div class="col col-lg-9">
-      <h1>Danh sách người dùng</h1>
-      <a href="/users/add" class="btn btn-primary">Thêm mới</a>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th width="5%">STT</th>
-            <th>Tên</th>
-            <th>Email</th>
-            <th>Trang thái</th>
-            <th width="15%">Phân quyền</th>
-            <th width="5%">Sửa</th>
-            <th width="5%">Xóa</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% users.forEach((user, index) => { %>
-          <tr>
-            <td><%= index+1 %></td>
-            <td><%= user.fullname %></td>
-            <td><%= user.email %></td>
-            <td><%= user.status ? 'Kích hoạt': 'Chưa kích hoạt' %></td>
-            <td>
-              <a href="/users/permission/<%=user.id  %>" class="btn btn-warning"
-                >Phân quyền</a
-              >
-            </td>
-            <td>
-              <a href="/users/edit/<%=user.id  %>" class="btn btn-warning"
-                >Sửa</a
-              >
-            </td>
-            <td>
-              <form
-                action="/users/delete/<%= user.id %>"
-                method="post"
-                onsubmit="return confirm('Bạn có chắc chắn?')"
-              >
-                <button class="btn btn-danger">Xóa</button>
-              </form>
-            </td>
-          </tr>
-          <% }) %>
-        </tbody>
-      </table>
-      <ul class="pagination">
-        <% if (page > 1) { %>
-        <li class="page-item">
-          <a class="page-link" href="?page=<%= +page - 1 %>">Previous</a>
-        </li>
-        <% } %> <% for( let index = 1; index <= totalPage; index++ ) { %>
-        <li class="page-item <%= +index ===+page ? 'active' : '' %>">
-          <a class="page-link" href="?page=<%= index %>"><%= index %></a>
-        </li>
-        <% } %> <% if (page < totalPage) { %>
-        <li class="page-item">
-          <a class="page-link" href="?page=<%= +page + 1 %>">Next</a>
-        </li>
-        <% } %>
-      </ul>
+    <div class="col-3">
+      <select name="status" class="form-select">
+        <option value="all">Tất cả</option>
+        <option value="active">Kích hoạt</option>
+        <option value="inactive">Chưa kích hoạt</option>
+      </select>
+    </div>
+    <div class="col-7">
+      <input
+        type="search"
+        class="form-control"
+        name="keyword"
+        placeholder="Từ khóa..."
+      />
+    </div>
+    <div class="col-2 d-grid">
+      <button class="btn btn-success">Tìm kiếm</button>
     </div>
   </div>
-</main>
+</form>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th width="5%">STT</th>
+      <th>Tên</th>
+      <th>Email</th>
+      <th>Trạng thái</th>
+      <th>Thời gian</th>
+      <% if (req.can('users.update')) { %>
+      <th width="10%">Quyền</th>
+      <% } %> <% if (req.can('users.update')) { %>
+      <th width="5%">Sửa</th>
+      <% } %> <% if (req.can('users.delete')) { %>
+      <th width="5%">Xóa</th>
+      <% } %>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.forEach((user, index) => { %>
+    <tr>
+      <td><%= index+1 %></td>
+      <td><%= user.fullname %></td>
+      <td><%= user.email %></td>
+      <td><%= user.status ? 'Kích hoạt': 'Chưa kích hoạt' %></td>
+      <td><%= moment(user.created_at).format('DD/MM/YYYY HH:mm:ss') %></td>
+      <% if (req.can('users.update')) { %>
+      <td>
+        <a href="/users/permission/<%= user.id %>" class="btn btn-info"
+          >Phân quyền</a
+        >
+      </td>
+      <% } %> <% if (req.can('users.update')) { %>
+      <td>
+        <a href="/users/edit/<%= user.id %>" class="btn btn-warning">Sửa</a>
+      </td>
+      <% } %> <% if (req.can('users.delete')) { %>
+
+      <td>
+        <form
+          action="/users/delete/<%= user.id %>"
+          method="post"
+          onsubmit="return confirm('Bạn có chắc chắn?')"
+        >
+          <button class="btn btn-danger">Xóa</button>
+        </form>
+      </td>
+      <% } %>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+<ul class="pagination">
+  <% if (page > 1) { %>
+  <li class="page-item">
+    <a class="page-link" href="?page=<%= +page-1 %>">Trước</a>
+  </li>
+  <% } %> <% for( let index = 1; index <= totalPage; index++ ) { %>
+  <li class="page-item <%= +index === +page ? 'active': '' %>">
+    <a class="page-link" href="?page=<%= index %>"><%= index %></a>
+  </li>
+  <% } %> <% if (page < totalPage) { %>
+  <li class="page-item">
+    <a class="page-link" href="?page=<%= +page+1 %>">Sau</a>
+  </li>
+  <% } %>
+</ul>

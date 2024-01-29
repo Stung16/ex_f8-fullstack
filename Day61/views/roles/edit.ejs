@@ -1,140 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-
-<main class="py-5 container">
-  <div class="row">
-    <ul class="list-unstyled col col-lg-2">
-      <li><a href="/">Trang chủ</a></li>
-      <li><a href="/users">Quản lý người dùng</a></li>
-      <li><a href="/roles">Quản lý Role</a></li>
-    </ul>
-    <div class="col col-lg-9">
-        <h1>Cập nhật Role</h1>
-        <%- success?.length ? `
-      <div class="alert alert-success" role="alert">${success[0]}</div>
-      `: '' %>
-    <select class="form-select mb-4" aria-label="Default select example" onchange="handleRedirect(this)">
-      <% roles.forEach(item => { %>
-      <option value="<%= item.id %>" <%= item.id === +id ? 'selected' : '' %>>
-        <a href="/roles/edit/<%= item.id %>"><%= item.name %></a>
-      </option>
-      <% }) %>
-    </select>
-    <form action="" method="post">
-      <div class="mb-3">
-        <label for="">Tên</label>
-        <input
-          type="text"
-          name="name"
-          value="<%= name %>"
-          class="form-control"
-          placeholder="Tên ..."
-        />
-      </div>
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Module</th>
-            <th>Quyền</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Quản lý User</td>
-            <td class="d-flex align-item-center justify-content-between">
-              <label for="view">
-                <input
-                  type="checkbox"
-                  id="view"
-                  <%= permissions.find(item =>
-                  item.value === 'user_read') ? 'checked' : '' %>
-                  name="permissions"
-                  value="user_read"
-                />
-                Xem
-              </label>
-              <label for="add">
-                <input
-                  type="checkbox"
-                  id="add"
-                  <%= permissions.find(item =>
-                  item.value === 'user_create') ? 'checked' : '' %>
-                  name="permissions"
-                  value="user_create"
-                />
-                Thêm
-              </label>
-              <label for="edit">
-                <input
-                  type="checkbox"
-                  id="edit"
-                  <%= permissions.find(item =>
-                  item.value === 'user_create') ? 'checked' : '' %>
-                  name="permissions"
-                  value="user_create"
-                />
-                Sửa
-              </label>
-              <label for="del">
-                <input
-                  type="checkbox"
-                  id="del"
-                  <%= permissions.find(item =>
-                  item.value === 'user_delete') ? 'checked' : '' %>
-                  name="permissions"
-                  value="user_delete"
-                />
-                Xóa
-              </label>
-            </td>
-          </tr>
-          <tr>
-            <td>Quản lý Roles</td>
-            <td class="d-flex align-item-center justify-content-between">
-              <label for="role_read">
-                <input type="checkbox" id="role_read" name="permissions" <%=
-                permissions.find(item => item.value === 'role_read') ? 'checked' : '' %>
-                value="role_read" /> Xem
-              </label>
-              <label for="role_create">
-                <input type="checkbox" id="role_create" <%= permissions.find(item =>
-                item.value === 'role_create') ? 'checked' : '' %> name="permissions"
-                value="role_create" /> Thêm
-              </label>
-              <label for="role_update">
-                <input type="checkbox" id="role_update" <%= permissions.find(item =>
-                item.value === 'role_update') ? 'checked' : '' %> name="permissions"
-                value="role_update" /> Sửa
-              </label>
-              <label for="role_delete">
-                <input type="checkbox" id="role_delete" <%= permissions.find(item =>
-                item.value === 'role_delete') ? 'checked' : '' %> name="permissions"
-                value="role_delete" /> Xóa
-              </label>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <button type="submit" class="btn btn-success">Lưu</button>
-      <a href="/roles" class="btn btn-danger">Hủy</a>
-    </form>
-    </div>
+<h1>Cập nhật vai trò</h1>
+<form action="" method="post">
+  <div class="mb-3">
+    <label for="">Tên</label>
+    <input
+      type="text"
+      class="form-control"
+      name="name"
+      placeholder="Tên..."
+      required
+      value="<%= role.name %>"
+    />
   </div>
-</main>
-</body>
-<script>
-    function handleRedirect(item) {
-      const value = item.value;
-      if (value) {
-        // window.location.assign("https://www.example.com");
-        window.location.href = `/roles/edit/${value}`;
-      }
-    }
-  </script>
-</html>
+  <label for="">Quyền</label>
+  <table class="table table-bordered">
+    <tr>
+      <th width="20%">Chức năng</th>
+      <th>Quyền</th>
+    </tr>
+    <tr>
+      <td>Quản lý người dùng</td>
+      <td>
+        <div class="row">
+          <div class="col-3">
+            <label>
+              <input type="checkbox" name="permissions" value="users.read" <%=
+              isPermission(role.permissions, 'users.read') ? 'checked': '' %>/>
+              Xem
+            </label>
+          </div>
+          <div class="col-3">
+            <label>
+              <input type="checkbox" name="permissions" value="users.create" <%=
+              isPermission(role.permissions, 'users.create') ? 'checked': ''
+              %>/> Thêm
+            </label>
+          </div>
+          <div class="col-3">
+            <label>
+              <input type="checkbox" name="permissions" value="users.update" <%=
+              isPermission(role.permissions, 'users.update') ? 'checked': ''
+              %>/> Sửa
+            </label>
+          </div>
+          <div class="col-3">
+            <label>
+              <input type="checkbox" name="permissions" value="users.delete" <%=
+              isPermission(role.permissions, 'users.delete') ? 'checked': ''
+              %>/> Xóa
+            </label>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Quản lý vai trò</td>
+      <td>
+        <div class="row">
+          <div class="col-3">
+            <label>
+              <input type="checkbox" name="permissions" value="roles.read" <%=
+              isPermission(role.permissions, 'roles.read') ? 'checked': '' %>/>
+              Xem
+            </label>
+          </div>
+          <div class="col-3">
+            <label>
+              <input type="checkbox" name="permissions" value="roles.create" <%=
+              isPermission(role.permissions, 'roles.create') ? 'checked': ''
+              %>/> Thêm
+            </label>
+          </div>
+          <div class="col-3">
+            <label>
+              <input type="checkbox" name="permissions" value="roles.update" <%=
+              isPermission(role.permissions, 'roles.update') ? 'checked': ''
+              %>/> Sửa
+            </label>
+          </div>
+          <div class="col-3">
+            <label>
+              <input type="checkbox" name="permissions" value="roles.delete" <%=
+              isPermission(role.permissions, 'roles.delete') ? 'checked': ''
+              %>/> Xóa
+            </label>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <button class="btn btn-primary">Lưu</button>
+  <a href="/roles" class="btn btn-danger">Hủy</a>
+</form>
