@@ -2,7 +2,7 @@ const moment = require("moment")
 module.exports = {
   generateRandomString: (length) => {
     const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_";
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";//Bỏ hết ký tự đặc biệt đi a, k lên url là nó lỗi á
     let randomString = "";
 
     for (let i = 0; i < length; i++) {

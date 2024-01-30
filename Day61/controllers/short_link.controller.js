@@ -37,7 +37,7 @@ module.exports = {
     }
     await Short_link.create({
       link_detail: url,
-      link_short: `http://localhost:3000/shorten-urls/${id_custom}`,
+      link_short: `https://day61-rust.vercel.app/shorten-urls/${id_custom}`,
       password: password ? password : null,
       access_times: 0,
       id_custom: id_custom,
