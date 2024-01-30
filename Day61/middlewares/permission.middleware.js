@@ -26,6 +26,9 @@ module.exports = (permission) => {
     req.can = (value) => {
       return permissions.includes(value);
     };
+    if(permission === "short_link"){
+      return next();
+    }
     if (permissions.includes(permission)) {
       return next();
     }

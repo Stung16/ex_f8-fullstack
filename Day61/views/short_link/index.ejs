@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com/" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <h1>Rút gọn liên kết</h1>
+    <h3>Công cụ rút gọn link miễn phí nhanh nhất</h3>
+    <div class="gap-4 d-flex">
+      <div class="col-9 table-responsive" style="height: fit-content">
+        <table class="table table-bordered">
+          <thead>
+            <th width="5%">STT</th>
+            <th>Liên kết gốc</th>
+            <th>Liên kết rút gọn</th>
+            <th>Mật khẩu</th>
+            <th>Lượt truy cập</th>
+            <th>Thời gian tạo</th>
+            <th width="5%">Hành động</th>
+          </thead>
+          <tbody>
+            <% short_link_intances.forEach((url,index) => { %>
+            <tr>
+              <td align="center"><%= index+1 %></td>
+              <td>
+                <a href="<%= url?.link_detail %>" target="_blank"
+                  ><%= url?.link_detail %></a
+                >
+              </td>
+              <td>
+                <a href="<%= url?.link_short %>" target="_blank"
+                  ><%= url?.link_short %></a
+                >
+              </td>
+              <td>
+                <% if (url.password) { %>
+                <button
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  onclick="return alert('<%- (url.password) %>')"
+                  class="btn btn-info"
+                >
+                  Xem
+                </button>
+                <% } else { %>
+                <span>Không có</span>
+                <% } %>
+              </td>
+
+              <td align="center"><%= url?.access_times %></td>
+              <td><%= handleDate(url?.created_at) %></td>
+              <td align="center">
+                <form
+                  action="/shorten-urls/delete/<%= url.id_custom %>"
+                  method="post"
+                  onsubmit="return confirm('Bạn có chắc chắn xóa không?')"
+                >
+                  <button type="submit" class="btn btn-danger">Xóa</button>
+                </form>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-3">
+        <form action="" method="post">
+          <div class="">
+            <label for="link" class="form-label">Liên kết</label>
+            <input
+              type="text"
+              name="url"
+              class="form-control"
+              id="link"
+              required
+            />
+          </div>
+          <%- err.length ? `
+          <div class="text-danger">${err[0]}</div>
+          `: '' %> <%- errEx.length ? `
+          <div class="text-danger">${errEx[0]}</div>
+          `: '' %>
+          <div class="mb-3">
+            <label for="pass" class="form-label">Mật khẩu (tùy chọn)</label>
+            <input type="text" name="password" class="form-control" id="pass" />
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="1"
+              checked
+              name="safe"
+              id="flexCheckDefault"
+            />
+            <label class="form-check-label" for="flexCheckDefault">
+              Chuyển hướng an toàn (Tránh bị chặn bởi facebook)
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input custom-id"
+              type="checkbox"
+              id="flexCheckChecked"
+              onclick="showInput()"
+            />
+            <label class="form-check-label" for="flexCheckChecked">
+              Tùy chỉnh ID của liên kết
+            </label>
+          </div>
+          <div class="my-3 custom-url" >
+            <input
+              id="custom"
+              style="display: none;"
+              type="text"
+              name="id_custom"
+              placeholder="ID tùy chỉnh"
+              class="form-control custom-input"
+            />
+          </div>
+          <button class="p-2 mt-2 btn btn-primary" style="width: 100%">
+            Rút gọn
+          </button>
+        </form>
+      </div>
+    </div>
+    <script>
+      function showInput() {
+        var checkbox = document.getElementById("flexCheckChecked");
+        var input = document.getElementById("custom");
+
+        if (checkbox.checked) {
+          input.style.display = "block";
+        } else {
+          input.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>

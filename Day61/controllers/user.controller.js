@@ -62,10 +62,10 @@ module.exports = {
     //   user.dienthoai = phone?.phone;
     // }
 
-    res.render("users/index", { users, moment, page, totalPage ,req});
+    res.render("users/index", { users, moment, page, totalPage, req });
   },
   add: async (req, res) => {
-    res.render("users/add",{req});
+    res.render("users/add", { req });
   },
   handleAdd: async (req, res) => {
     const body = req.body;
@@ -86,7 +86,7 @@ module.exports = {
       }
       // console.log(await user.getPhone());
       // const user2 = await model.Phone.getUser()
-      res.render("users/edit", { user,req });
+      res.render("users/edit", { user, req });
     } catch (e) {
       return next(e);
     }
@@ -123,7 +123,7 @@ module.exports = {
         as: "roles",
       },
     });
-    res.render("users/permission", { roles, user, id ,req});
+    res.render("users/permission", { roles, user, id, req });
   },
 
   handlePermission: async (req, res) => {

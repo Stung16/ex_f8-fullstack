@@ -14,6 +14,7 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var rolesRouter = require("./routes/roles");
 var authRouter = require("./routes/auth");
+var shortLinkRouter = require("./routes/short_link");
 const passportLocal = require("./passports/passport.local");
 const passportGoogle = require("./passports/passport.google");
 const authMiddwares = require("./middlewares/auth.middleware");
@@ -59,6 +60,7 @@ app.use("/auth",guestMiddleware, authRouter);
 app.use(authMiddwares);
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/shorten-urls", shortLinkRouter);
 app.use("/roles", rolesRouter);
 
 // catch 404 and forward to error handler
