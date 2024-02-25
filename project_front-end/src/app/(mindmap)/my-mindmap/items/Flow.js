@@ -1,11 +1,11 @@
 "use client";
 import { ReactFlowProvider } from "reactflow";
-import Mindmap from "./Mindmap";
+import AddNodeOnEdgeDrop from "./AddNodeOnEdgeDrop ";
 
-function Flow({idmap,subid}) {
+function Flow({id}) {
   return (
     <ReactFlowProvider>
-      <Mindmap idmap={idmap} sub={subid} />
+      <AddNodeOnEdgeDrop id={id} />
     </ReactFlowProvider>
   );
 }

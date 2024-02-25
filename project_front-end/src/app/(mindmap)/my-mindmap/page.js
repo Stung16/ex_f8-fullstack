@@ -1,4 +1,4 @@
-import ListMindmap from "./[id]/ListMindmap";
+import ListMindmap from "./ListMindmap";
 // import Confirm from "../items/confirm";
 import { getSession } from "@auth0/nextjs-auth0";
 import { redirect } from "next/navigation";

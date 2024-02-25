@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import Confirm from "./items/Confirm";
+import Confirm from "./Confirm";
 import { delMindmap } from "@/services/mindmapServices";
 import Loading from "@/components/Loading/Loading";
 

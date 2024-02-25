@@ -1,7 +1,8 @@
+'use client'
 import React from "react";
-import Create from "../Create";
+import Create from "../../../components/Create";
 import { getListData } from "@/services/mindmapServices";
-import Delete from "../Delete";
+import Delete from "../../../components/Delete";
 const ListMindmap = async ({sub}) => {
   const data = await getListData(sub);
   return (

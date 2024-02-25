@@ -1,9 +1,10 @@
 import React from "react";
 import "reactflow/dist/style.css";
 import { GetMindMap } from "@/services/mindmapServices";
-import Flow from "./Flow";
 import { getSession } from "@auth0/nextjs-auth0";
 import NotFound from "@/app/not-found";
+import MindMapDetail from "./MindMapDetail";
+import { DataProvider } from "@/app/context/DataProvider";
 
 const getDataSeo = async (id) => {
   const response = await fetch(
@@ -31,16 +32,11 @@ export const generateMetadata = async ({ params }) => {
 };
 
 const page = async ({ params: { id } }) => {
-  const { user } = await getSession();
-  const data = await GetMindMap(user?.sub,id)
-  let idmapCheck
-  if (data) {
-     idmapCheck = data[0]?.id 
-     if(id !== idmapCheck){
-      return <NotFound />
-     }
-  }
-  return <Flow idmap={id} subid={user?.sub} />;
+  return (
+    <DataProvider>
+      <MindMapDetail idmap={id} />
+    </DataProvider>
+  );
 };
 
 export default page;
