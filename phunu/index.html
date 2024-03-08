@@ -1,0 +1,262 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="icon" type="image/png" href="image/favicon.ico">
+		<title>Quốc tế phụ nữ</title>    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link type="text/css" rel="stylesheet" href="./renxi/default.css">
+		<script type="text/javascript" src="./renxi/jquery.min.js"></script>
+		<script type="text/javascript" src="./renxi/jscex.min.js"></script>
+		<script type="text/javascript" src="./renxi/jscex-parser.js"></script>
+		<script type="text/javascript" src="./renxi/jscex-jit.js"></script>
+		<script type="text/javascript" src="./renxi/jscex-builderbase.min.js"></script>
+		<script type="text/javascript" src="./renxi/jscex-async.min.js"></script>
+		<script type="text/javascript" src="./renxi/jscex-async-powerpack.min.js"></script>
+		<script type="text/javascript" src="./renxi/functions.js" charset="utf-8"></script>
+        <script type="text/javascript" src="./renxi/love.js" charset="utf-8"></script>
+		<script type="text/javascript" src="./renxi/jscex-jit.js"></script>
+
+
+</head>
+    <body>
+        <div id="hiddenDiv"></div>
+        <audio id="myAudio">
+            <source src="./music/I-Do-911.mp3" type="audio/mpeg">
+        </audio>
+        <div id="wrap">
+            <div id="text" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;">
+    
+            </div>
+            <div class="box-santa">
+                <div class="santa-container">
+    
+                    <div class="box-noel-gif">
+                    </div>
+                    <div class="box-gift">
+                        <div class="gift-bottom"></div>
+                        <div class="gift-top"></div>
+                        <div class="box-fastener">
+                            <div class="fastener1"></div>
+                            <div class="fastener2"></div>
+                        </div>
+                        <div class="content"></div>
+                    </div>
+                    <div class="box-content">
+                        <i class="fa-solid fa-xmark"></i>
+                        <div class="content1">
+                            <div class="content-text">
+                                <div class="text1">
+                                    <p id="text1">2024!</p>
+                                </div>
+                                <div class="text2">
+                                    <h2 id="text2">Nhân dịp ngày 8/3,Chúc em và gia đình luôn zui zẻ gặp nhiều may mắn, nhiều sức khoẻ, hạnh
+                                        phúc và những điều tuyệt vời trong cuộc sống!
+                                    </h2>
+                                    <h2 id="text3">Chúc e cực iu a nhó</br>
+                                        <h2 style="text-align: right;">Tũn</h2>
+                                    </h2>
+                                    
+                                </div>
+                            </div>
+                            <div class="image-decorate">
+                                <div class="pineTree">
+                                    <img src="https://i.pinimg.com/originals/dd/bf/00/ddbf00d0dbaea8814cca8cc19796fd8e.gif"
+                                        alt="">
+                                </div>
+                                <div class="bell">
+                                    <img src="https://i.pinimg.com/originals/b2/b8/74/b2b874f5acecbbee0d94635d3ef70c31.gif"
+                                        alt="">
+                                </div>
+                                <div class="snowman">
+                                    <img src="https://i.pinimg.com/originals/25/68/7e/25687e30fa47dc8dcc4cc7b9959d775a.gif"
+                                        alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="image-santa-content">
+                            <img src="https://i.pinimg.com/originals/81/76/00/8176001689827fccb19481f75c70b25e.gif" alt="">
+                        </div>
+                        <div class="image-santa-content-1">
+                            <img src="https://i.pinimg.com/originals/57/61/5b/57615b8c0092a66c1d4058b1692955cc.gif" alt="">
+                        </div>
+                    </div>
+                    <div class="shadow-boxGift">
+                    </div>
+                </div>
+            </div>
+            <div id="clock-box">
+                <span class="STYLE1"></span>
+                <font color="#FF0000">Hà Nội, ngày 8 tháng 3 năm 2024</font>
+                <div id="clock"></div>
+            </div>
+            <canvas id="canvas" width="1100" height="680"></canvas>
+        </div>
+    
+        </div>
+    
+        <script>
+        </script>
+    
+        <script>
+            (function () {
+                var canvas = $('#canvas');
+    
+                if (!canvas[0].getContext) {
+                    $("#error").show();
+                    return false;
+                }
+    
+                var width = canvas.width();
+                var height = canvas.height();
+                canvas.attr("width", width);
+                canvas.attr("height", height);
+                var opts = {
+                    seed: {
+                        x: width / 2 - 20,
+                        color: "rgb(190, 26, 37)",
+                        scale: 2
+                    },
+                    branch: [
+                        [535, 680, 570, 250, 500, 200, 30, 100, [
+                            [540, 500, 455, 417, 340, 400, 13, 100, [
+                                [450, 435, 434, 430, 394, 395, 2, 40]
+                            ]],
+                            [550, 445, 600, 356, 680, 345, 12, 100, [
+                                [578, 400, 648, 409, 661, 426, 3, 80]
+                            ]],
+                            [539, 281, 537, 248, 534, 217, 3, 40],
+                            [546, 397, 413, 247, 328, 244, 9, 80, [
+                                [427, 286, 383, 253, 371, 205, 2, 40],
+                                [498, 345, 435, 315, 395, 330, 4, 60]
+                            ]],
+                            [546, 357, 608, 252, 678, 221, 6, 100, [
+                                [590, 293, 646, 277, 648, 271, 2, 80]
+                            ]]
+                        ]]
+                    ],
+                    bloom: {
+                        num: 700,
+                        width: 1080,
+                        height: 650,
+                    },
+                    footer: {
+                        width: 1200,
+                        height: 5,
+                        speed: 10,
+                    }
+                }
+    
+                var tree = new Tree(canvas[0], width, height, opts);
+                var seed = tree.seed;
+                var foot = tree.footer;
+                var hold = 1;
+    
+                canvas.click(function (e) {
+                    var offset = canvas.offset(), x, y;
+                    x = e.pageX - offset.left;
+                    y = e.pageY - offset.top;
+                    if (seed.hover(x, y)) {
+                        hold = 0;
+                        canvas.unbind("click");
+                        canvas.unbind("mousemove");
+                        canvas.removeClass('hand');
+                    }
+                }).mousemove(function (e) {
+                    var offset = canvas.offset(), x, y;
+                    x = e.pageX - offset.left;
+                    y = e.pageY - offset.top;
+                    canvas.toggleClass('hand', seed.hover(x, y));
+                });
+    
+                var seedAnimate = eval(Jscex.compile("async", function () {
+                    seed.draw();
+                    while (hold) {
+                        $await(Jscex.Async.sleep(10));
+                    }
+                    while (seed.canScale()) {
+                        seed.scale(0.95);
+                        $await(Jscex.Async.sleep(10));
+                    }
+                    while (seed.canMove()) {
+                        seed.move(0, 2);
+                        foot.draw();
+                        $await(Jscex.Async.sleep(10));
+                    }
+                }));
+    
+                var growAnimate = eval(Jscex.compile("async", function () {
+                    do {
+                        tree.grow();
+                        $await(Jscex.Async.sleep(10));
+                    } while (tree.canGrow());
+                }));
+    
+                var flowAnimate = eval(Jscex.compile("async", function () {
+                    do {
+                        tree.flower(2);
+                        $await(Jscex.Async.sleep(10));
+                    } while (tree.canFlower());
+                }));
+    
+                var moveAnimate = eval(Jscex.compile("async", function () {
+                    tree.snapshot("p1", 240, 0, 610, 680);
+                    while (tree.move("p1", 500, 0)) {
+                        foot.draw();
+                        $await(Jscex.Async.sleep(10));
+                    }
+                    foot.draw();
+                    tree.snapshot("p2", 500, 0, 610, 680);
+    
+                    canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
+                    canvas.css("background", "#ffe");
+                    $await(Jscex.Async.sleep(300));
+                    canvas.css("background", "none");
+                }));
+    
+                var jumpAnimate = eval(Jscex.compile("async", function () {
+                    var ctx = tree.ctx;
+                    while (true) {
+                        tree.ctx.clearRect(0, 0, width, height);
+                        tree.jump();
+                        foot.draw();
+                        $await(Jscex.Async.sleep(25));
+                    }
+                }));
+    
+                var textAnimate = eval(Jscex.compile("async", function () {
+                    var together = new Date();
+                    together.setFullYear(2018, 2, 8);
+                    together.setHours(0);
+                    together.setMinutes(0);
+                    together.setSeconds(0);
+                    together.setMilliseconds(0);
+    
+    
+    
+                    $("#code").show().typewriter();
+                    $("#clock-box").fadeIn(500);
+                    while (true) {
+                        timeElapse(together);
+                        $await(Jscex.Async.sleep(1000));
+                    }
+                }));
+    
+                var runAsync = eval(Jscex.compile("async", function () {
+                    $await(seedAnimate());
+                    $await(growAnimate());
+                    $await(flowAnimate());
+                    $await(moveAnimate());
+    
+                    textAnimate().start();
+    
+                    $await(jumpAnimate());
+                }));
+    
+                runAsync().start();
+            })();
+        </script>
+</div>
+</body>
+<script type="text/javascript" src="./renxi/app.js" charset="utf-8"></script>
+</html>
